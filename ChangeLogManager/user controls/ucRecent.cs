@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using ChangeLogManager.classes;
 
 namespace ChangeLogManager
 {
     public partial class ucRecent : UserControl
     {
-        public static Label title, version, date;
-        public static string path;
+        public Label title, version, date;
+        public string path;
 
         public ucRecent()
         {
@@ -22,6 +17,26 @@ namespace ChangeLogManager
             title = lTitle;
             version = lVersion;
             date = lDate;
+        }
+
+        private void lDate_MouseEnter(object sender, EventArgs e)
+        {
+            ucRecent_MouseEnter(this, e);
+        }
+
+        private void lDate_MouseLeave(object sender, EventArgs e)
+        {
+            ucRecent_MouseLeave(this, e);
+        }
+
+        private void ucRecent_Click(object sender, EventArgs e)
+        {
+            cLog.OpenLog(this.ParentForm, true, this.path);
+        }
+
+        private void lDate_Click(object sender, EventArgs e)
+        {
+            ucRecent_Click(this, e);
         }
 
         private void ucRecent_MouseEnter(object sender, EventArgs e)

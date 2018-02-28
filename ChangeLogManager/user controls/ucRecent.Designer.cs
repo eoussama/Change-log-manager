@@ -44,6 +44,9 @@
             this.lTitle.Size = new System.Drawing.Size(65, 13);
             this.lTitle.TabIndex = 1;
             this.lTitle.Text = "Update Title";
+            this.lTitle.Click += new System.EventHandler(this.lDate_Click);
+            this.lTitle.MouseEnter += new System.EventHandler(this.lDate_MouseEnter);
+            this.lTitle.MouseLeave += new System.EventHandler(this.lDate_MouseLeave);
             // 
             // lVersion
             // 
@@ -54,6 +57,9 @@
             this.lVersion.Size = new System.Drawing.Size(58, 13);
             this.lVersion.TabIndex = 2;
             this.lVersion.Text = "Version 0.1";
+            this.lVersion.Click += new System.EventHandler(this.lDate_Click);
+            this.lVersion.MouseEnter += new System.EventHandler(this.lDate_MouseEnter);
+            this.lVersion.MouseLeave += new System.EventHandler(this.lDate_MouseLeave);
             // 
             // lDate
             // 
@@ -65,6 +71,9 @@
             this.lDate.Size = new System.Drawing.Size(45, 13);
             this.lDate.TabIndex = 3;
             this.lDate.Text = "1/1/2018";
+            this.lDate.Click += new System.EventHandler(this.lDate_Click);
+            this.lDate.MouseEnter += new System.EventHandler(this.lDate_MouseEnter);
+            this.lDate.MouseLeave += new System.EventHandler(this.lDate_MouseLeave);
             // 
             // pbIcon
             // 
@@ -75,6 +84,9 @@
             this.pbIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbIcon.TabIndex = 0;
             this.pbIcon.TabStop = false;
+            this.pbIcon.Click += new System.EventHandler(this.lDate_Click);
+            this.pbIcon.MouseEnter += new System.EventHandler(this.lDate_MouseEnter);
+            this.pbIcon.MouseLeave += new System.EventHandler(this.lDate_MouseLeave);
             // 
             // ucRecent
             // 
@@ -88,6 +100,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Name = "ucRecent";
             this.Size = new System.Drawing.Size(167, 54);
+            this.Click += new System.EventHandler(this.ucRecent_Click);
             this.MouseEnter += new System.EventHandler(this.ucRecent_MouseEnter);
             this.MouseLeave += new System.EventHandler(this.ucRecent_MouseLeave);
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).EndInit();
