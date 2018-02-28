@@ -196,6 +196,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon_main.ico" />
+    <None Include="images\icon_delete.png" />
+    <None Include="images\icon_edit.png" />
+    <None Include="images\icon_copy.png" />
+    <None Include="images\icon_new.png" />
     <None Include="images\icon-files.png" />
     <None Include="images\if_gnome-mime-text-x-changelog_24893.png" />
     <None Include="images\icon_main.png" />
