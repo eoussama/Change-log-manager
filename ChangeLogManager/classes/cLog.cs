@@ -13,50 +13,6 @@ namespace ChangeLogManager.classes
 
     public static class cLog
     {
-        public static void OpenLog(Form currentForm, bool openForm = true)
-        {
-            OpenFileDialog openF = new OpenFileDialog() { Title = "Change-log open", Filter = "Change-log Files (*.log)|*.log" };
-            if (openF.ShowDialog() == DialogResult.OK)
-            {
-                if(openForm == true)
-                {
-                    fMain form = new fMain();
-                    form.Show();
-                    currentForm.Hide();
-                }
-
-                StreamReader streamR = new StreamReader(openF.FileName);
-                try
-                {
-                    while (!streamR.EndOfStream)
-                    {
-                        string line = streamR.ReadLine();
-
-                        if (Regex.IsMatch(line, @"^\[Title: (.)*\]$"))
-                            fMain.changelogTitle.Text = line.Substring(8, line.Length - 9);
-                        else if (Regex.IsMatch(line, @"^\[Version: (.)*\]$"))
-                            fMain.changelogVersion.Text = line.Substring(10, line.Length - 11);
-                        else if (Regex.IsMatch(line, @"^\[New feature: (.)*\]$"))
-                            fMain.newFeatures.Items.Add(line.Substring(14, line.Length - 15));
-                        else if (Regex.IsMatch(line, @"^\[Change: (.)*\]$"))
-                            fMain.changes.Items.Add(line.Substring(9, line.Length - 10));
-                        else if (Regex.IsMatch(line, @"^\[Fix: (.)*\]$"))
-                            fMain.fixes.Items.Add(line.Substring(6, line.Length - 7));
-                    }
-                }
-
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-                finally
-                {
-                    streamR.Close();
-                }
-            }
-        }
-
         public static void NewLog(string title, string version)
         {
             fMain.changelogTitle.Text = title;
@@ -64,6 +20,47 @@ namespace ChangeLogManager.classes
             fMain.newFeatures.Items.Clear();
             fMain.changes.Items.Clear();
             fMain.fixes.Items.Clear();
+        }
+
+        public static void OpenLog(Form currentForm, bool openForm = true, string path = "")
+        {
+            if(openForm == true)
+            {
+                fMain form = new fMain(path);
+                form.Show();
+                currentForm.Hide();
+            }
+
+            StreamReader streamR = new StreamReader(path);
+            try
+            {
+                while (!streamR.EndOfStream)
+                {
+                    string line = streamR.ReadLine();
+
+                    if (Regex.IsMatch(line, @"^\[Title: (.)*\]$"))
+                        fMain.changelogTitle.Text = line.Substring(8, line.Length - 9);
+                    else if (Regex.IsMatch(line, @"^\[Version: (.)*\]$"))
+                        fMain.changelogVersion.Text = line.Substring(10, line.Length - 11);
+                    else if (Regex.IsMatch(line, @"^\[New feature: (.)*\]$"))
+                        fMain.newFeatures.Items.Add(line.Substring(14, line.Length - 15));
+                    else if (Regex.IsMatch(line, @"^\[Change: (.)*\]$"))
+                        fMain.changes.Items.Add(line.Substring(9, line.Length - 10));
+                    else if (Regex.IsMatch(line, @"^\[Fix: (.)*\]$"))
+                        fMain.fixes.Items.Add(line.Substring(6, line.Length - 7));
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            finally
+            {
+                streamR.Close();
+                AddLogToRecent(path);
+            }
         }
 
         public static void SaveLog()
@@ -75,8 +72,8 @@ namespace ChangeLogManager.classes
 
                 try
                 {
-                    streamW.WriteLine("[Title: " + fMain.changelogTitle.Text.Trim() + " ]");
-                    streamW.WriteLine("[Version: " + fMain.changelogVersion.Text.Trim() + " ]");
+                    streamW.WriteLine("[Title: " + fMain.changelogTitle.Text.Trim() + "]");
+                    streamW.WriteLine("[Version: " + fMain.changelogVersion.Text.Trim() + "]");
 
                     // New features
                     foreach (var line in fMain.newFeatures.Items)
@@ -92,7 +89,7 @@ namespace ChangeLogManager.classes
 
                     streamW.WriteLine("\nLast saved on " + DateTime.Now);
 
-                    MessageBox.Show("You have successfully saved your changelog under “" + Path.GetFileName(saveF.FileName) + "”");
+                    MessageBox.Show("You have successfully saved your changelog under “" + Path.GetFileName(saveF.FileName) + "”", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 catch (Exception ex)
@@ -103,6 +100,8 @@ namespace ChangeLogManager.classes
                 finally
                 {
                     streamW.Close();
+                    AddLogToRecent(saveF.FileName);
+                    fMain.currentFile = saveF.FileName;
                 }
             }
         }
@@ -113,7 +112,7 @@ namespace ChangeLogManager.classes
             {
                 case SaveType.Text:
                 {
-                    SaveFileDialog saveF = new SaveFileDialog() { Title = "Change-log export as text file", Filter = "Change-log Files (*.txt)|*.txt", FileName = fMain.changelogTitle.Text + " - " + fMain.changelogVersion.Text };
+                    SaveFileDialog saveF = new SaveFileDialog() { Title = "Change-log export as text file", Filter = "Change-log Files (*.log)|*.log", FileName = fMain.changelogTitle.Text + " - " + fMain.changelogVersion.Text };
                     if (saveF.ShowDialog() == DialogResult.OK)
                     {
                         StreamWriter streamW = new StreamWriter(saveF.FileName);
@@ -139,6 +138,7 @@ namespace ChangeLogManager.classes
                                 streamW.WriteLine("\t-" + line.ToString());
 
                             streamW.WriteLine("\r\n\r\n\r\nExported on " + DateTime.Now);
+                            fMain.UpdateStatusStrip("Change-log was successfully exported in plain text");
                         }
 
                         catch (Exception ex)
@@ -186,11 +186,12 @@ namespace ChangeLogManager.classes
                             streamW.WriteLine("[/LIST][/CODE]");
 
                             streamW.WriteLine("\r\n\r\n\r\n[I]Exported on " + DateTime.Now + "[/I]");
+                            fMain.UpdateStatusStrip("Change-log was successfully exported in BBCode");
                         }
 
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
 
                         finally
@@ -240,11 +241,12 @@ namespace ChangeLogManager.classes
                             streamW.WriteLine("</ul></div>");
                             streamW.WriteLine("\r\n\r\n\r\n<i>Exported on " + DateTime.Now + "</i>");
                             streamW.WriteLine("</div></main><script type=\"text/javascript\">var _new=document.getElementById('new');var newCB=document.getElementById('newCB');var newList=document.getElementById('newList');var newLineCount=document.querySelectorAll('#newList ul li').length;var changes=document.getElementById('changes');var changesCB=document.getElementById('changesCB');var changesList=document.getElementById('changesList');var changesLineCount=document.querySelectorAll('#changesList ul li').length;var fixes=document.getElementById('fixes');var fixesCB=document.getElementById('fixesCB');var fixesList=document.getElementById('fixesList');var fixesLineCount=document.querySelectorAll('#fixesList ul li').length;_new.addEventListener('click', function(){if(newCB.checked==true){newList.style.height='0px';newList.style.opacity='0';}else{newList.style.opacity='1';newList.style.height=(newLineCount/1 * 23.3) + 'px';}});changes.addEventListener('click', function(){if(changesCB.checked==true){changesList.style.height='0px';changesList.style.opacity='0';}else{changesList.style.opacity='1';changesList.style.height=(changesLineCount/1 * 23.3) + 'px';}});fixes.onclick=addEventListener('click', function(){if(fixesCB.checked==true){fixesList.style.height='0px';fixesList.style.opacity='0';}else{fixesList.style.opacity='1';fixesList.style.height=(fixesLineCount/1 * 23.3) + 'px';}});</script></body></html>");
+                            fMain.UpdateStatusStrip("Change-log was successfully exported in HTML format");
                         }
 
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
 
                         finally
@@ -284,11 +286,12 @@ namespace ChangeLogManager.classes
                                 streamW.WriteLine("- " + line.ToString());
 
                             streamW.WriteLine("\r\n\r\n\r\n*Exported on " + DateTime.Now + "*");
+                            fMain.UpdateStatusStrip("Change-log was successfully exported in Markdown format");
                         }
 
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
 
                         finally
@@ -302,8 +305,29 @@ namespace ChangeLogManager.classes
 
                 case SaveType.Pawn:
                 {
-                    fPawnExport form = new fPawnExport();
-                    form.Show();
+                    SaveFileDialog saveF = new SaveFileDialog() { Title = "Change-log export in pawn syntax", Filter = "Change-log Files (*.pwn)|*.pwn", FileName = fMain.changelogTitle.Text + " - " + fMain.changelogVersion.Text };
+                    if (saveF.ShowDialog() == DialogResult.OK)
+                    {
+                        StreamWriter streamW = new StreamWriter(saveF.FileName);
+
+                        try
+                        {
+                            streamW.WriteLine(fPawnExport.rtbCode.Text);
+                            streamW.WriteLine("\r\n\r\n//Exported on " + DateTime.Now);
+                            fMain.UpdateStatusStrip("Change-log was successfully exported as a PAWN snippet");
+                        }
+
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
+                        finally
+                        {
+                            streamW.Close();
+                        }
+                    }
+
                     break;
                 }
             }
@@ -314,11 +338,105 @@ namespace ChangeLogManager.classes
             fMain.newFeatures.Items.Clear();
             fMain.changes.Items.Clear();
             fMain.fixes.Items.Clear();
+            fMain.UpdateStatusStrip("Change-log was successfully reset");
         }
 
         public static bool IsLogEmpty()
         {
             return fMain.newFeatures.Items.Count == 0 && fMain.changes.Items.Count == 0 && fMain.fixes.Items.Count == 0;
+        }
+
+        public static void AddLogToRecent(string path)
+        {
+            FileStream fileS = new FileStream("config.cfg", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+
+            try
+            {
+                StreamReader streamR = new StreamReader(fileS);
+
+                if(!streamR.ReadToEnd().Contains(path))
+                {
+                    StreamWriter streamW = new StreamWriter(fileS);
+                    streamW.WriteLine("[Recent: " + path + "]");
+                    streamW.Flush();
+                    streamW.Close();
+                }
+
+                streamR.Close();
+            }
+
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            finally
+            {
+                fileS.Close();
+            }
+        }
+
+        public static string getLogTitle(string path)
+        {
+            string output = string.Empty, line = string.Empty;
+            StreamReader streamR = new StreamReader(path);
+            
+            while ((line = streamR.ReadLine()) != null)
+            {
+                if (Regex.IsMatch(line, @"^\[Title: (.)*\]$"))
+                    output = line.Substring(8, line.Length - 9);
+            }
+
+            streamR.Close();
+
+            return output;
+        }
+
+        public static string getLogVersion(string path)
+        {
+            string output = string.Empty, line = string.Empty;
+            StreamReader streamR = new StreamReader(path);
+
+            while ((line = streamR.ReadLine()) != null)
+            {
+                if (Regex.IsMatch(line, @"^\[Version: (.)*\]$"))
+                    output = line.Substring(10, line.Length - 11);
+            }
+
+            streamR.Close();
+
+            return output;
+        }
+
+        public static string getLogDate(string path)
+        {
+            string output = string.Empty, line = string.Empty;
+            StreamReader streamR = new StreamReader(path);
+
+            while ((line = streamR.ReadLine()) != null)
+            {
+                if (Regex.IsMatch(line, @"^Last saved on .*$"))
+                    output = line.Substring(14, line.Length - 14);
+            }
+
+            streamR.Close();
+
+            return DateTime.Parse(output).ToShortDateString();
+        }
+
+        public static void Flush()
+        {
+            StreamWriter streamW = new StreamWriter("config.cfg", false);
+
+            streamW.WriteLine("\t\t\t-[Change-log manager config]-");
+
+            foreach (ucRecent recent in fWelcome.menu.Controls.OfType<ucRecent>())
+            {
+                if(File.Exists(recent.path))
+                    streamW.WriteLine("[Recent: " + recent.path + "]");
+            }
+
+            streamW.Close();
         }
     }
 }
