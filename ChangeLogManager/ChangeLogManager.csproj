@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8ADC7F3E-1816-4869-B4B8-B25E589049E6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ChangeLogManager</RootNamespace>
+    <AssemblyName>ChangeLogManager</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon_main.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="classes\cLog.cs" />
+    <Compile Include="forms\fAddChange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\fAddChange.Designer.cs">
+      <DependentUpon>fAddChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\fAddFix.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\fAddFix.Designer.cs">
+      <DependentUpon>fAddFix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\fAddNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\fAddNew.Designer.cs">
+      <DependentUpon>fAddNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\fChangeEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\fChangeEdit.Designer.cs">
+      <DependentUpon>fChangeEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\fFixEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\fFixEdit.Designer.cs">
+      <DependentUpon>fFixEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\fMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\fMain.Designer.cs">
+      <DependentUpon>fMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\fNewChangeLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\fNewChangeLog.Designer.cs">
+      <DependentUpon>fNewChangeLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\fNewEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\fNewEdit.Designer.cs">
+      <DependentUpon>fNewEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\fPawnExport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\fPawnExport.Designer.cs">
+      <DependentUpon>fPawnExport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\fTitleEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\fTitleEdit.Designer.cs">
+      <DependentUpon>fTitleEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\fVersionEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\fVersionEdit.Designer.cs">
+      <DependentUpon>fVersionEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\fWelcome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\fWelcome.Designer.cs">
+      <DependentUpon>fWelcome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="user controls\ucRecent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="user controls\ucRecent.Designer.cs">
+      <DependentUpon>ucRecent.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="forms\fAddChange.resx">
+      <DependentUpon>fAddChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\fAddFix.resx">
+      <DependentUpon>fAddFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\fAddNew.resx">
+      <DependentUpon>fAddNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\fChangeEdit.resx">
+      <DependentUpon>fChangeEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\fFixEdit.resx">
+      <DependentUpon>fFixEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\fMain.resx">
+      <DependentUpon>fMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\fNewChangeLog.resx">
+      <DependentUpon>fNewChangeLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\fNewEdit.resx">
+      <DependentUpon>fNewEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\fPawnExport.resx">
+      <DependentUpon>fPawnExport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\fTitleEdit.resx">
+      <DependentUpon>fTitleEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\fVersionEdit.resx">
+      <DependentUpon>fVersionEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\fWelcome.resx">
+      <DependentUpon>fWelcome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="user controls\ucRecent.resx">
+      <DependentUpon>ucRecent.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\icon_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon_main.ico" />
+    <None Include="images\icon_delete.png" />
+    <None Include="images\icon_edit.png" />
+    <None Include="images\icon_copy.png" />
+    <None Include="images\icon_new.png" />
+    <None Include="images\icon-files.png" />
+    <None Include="images\if_gnome-mime-text-x-changelog_24893.png" />
+    <None Include="images\icon_main.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
