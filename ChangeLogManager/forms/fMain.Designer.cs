@@ -75,6 +75,14 @@
             this.toolTipCopy = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipEdit = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipDelete = new System.Windows.Forms.ToolTip(this.components);
+            this.pbChangeUp = new System.Windows.Forms.PictureBox();
+            this.pbChangeDown = new System.Windows.Forms.PictureBox();
+            this.pbNewUp = new System.Windows.Forms.PictureBox();
+            this.pbNewDown = new System.Windows.Forms.PictureBox();
+            this.pbFixUp = new System.Windows.Forms.PictureBox();
+            this.pbFixDown = new System.Windows.Forms.PictureBox();
+            this.toolTipUp = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipDown = new System.Windows.Forms.ToolTip(this.components);
             this.pTitle.SuspendLayout();
             this.msMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbFixDelete)).BeginInit();
@@ -89,6 +97,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbAddFixes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAddChanges)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAddNew)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbChangeUp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbChangeDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNewUp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNewDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFixUp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFixDown)).BeginInit();
             this.SuspendLayout();
             // 
             // lTitle
@@ -175,6 +189,7 @@
             this.lNew.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lNew.Location = new System.Drawing.Point(12, 107);
             this.lNew.Name = "lNew";
+            this.lNew.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.lNew.Size = new System.Drawing.Size(223, 25);
             this.lNew.TabIndex = 8;
             this.lNew.Text = "New features";
@@ -247,42 +262,42 @@
             // welcomeToolStripMenuItem
             // 
             this.welcomeToolStripMenuItem.Name = "welcomeToolStripMenuItem";
-            this.welcomeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.welcomeToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.welcomeToolStripMenuItem.Text = "Welcome";
             this.welcomeToolStripMenuItem.Click += new System.EventHandler(this.welcomeToolStripMenuItem_Click);
             // 
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveUsToolStripMenuItem
             // 
             this.saveUsToolStripMenuItem.Name = "saveUsToolStripMenuItem";
-            this.saveUsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveUsToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.saveUsToolStripMenuItem.Text = "Save as";
             this.saveUsToolStripMenuItem.Click += new System.EventHandler(this.saveUsToolStripMenuItem_Click);
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.quitToolStripMenuItem.Text = "Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
@@ -376,9 +391,9 @@
             this.pbFixDelete.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.pbFixDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbFixDelete.Image = ((System.Drawing.Image)(resources.GetObject("pbFixDelete.Image")));
-            this.pbFixDelete.Location = new System.Drawing.Point(594, 109);
+            this.pbFixDelete.Location = new System.Drawing.Point(607, 110);
             this.pbFixDelete.Name = "pbFixDelete";
-            this.pbFixDelete.Size = new System.Drawing.Size(23, 21);
+            this.pbFixDelete.Size = new System.Drawing.Size(20, 20);
             this.pbFixDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbFixDelete.TabIndex = 24;
             this.pbFixDelete.TabStop = false;
@@ -391,9 +406,9 @@
             this.pbFixEdit.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.pbFixEdit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbFixEdit.Image = ((System.Drawing.Image)(resources.GetObject("pbFixEdit.Image")));
-            this.pbFixEdit.Location = new System.Drawing.Point(617, 109);
+            this.pbFixEdit.Location = new System.Drawing.Point(627, 110);
             this.pbFixEdit.Name = "pbFixEdit";
-            this.pbFixEdit.Size = new System.Drawing.Size(23, 21);
+            this.pbFixEdit.Size = new System.Drawing.Size(20, 20);
             this.pbFixEdit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbFixEdit.TabIndex = 23;
             this.pbFixEdit.TabStop = false;
@@ -406,9 +421,9 @@
             this.pbFixCopy.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.pbFixCopy.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbFixCopy.Image = ((System.Drawing.Image)(resources.GetObject("pbFixCopy.Image")));
-            this.pbFixCopy.Location = new System.Drawing.Point(640, 109);
+            this.pbFixCopy.Location = new System.Drawing.Point(647, 110);
             this.pbFixCopy.Name = "pbFixCopy";
-            this.pbFixCopy.Size = new System.Drawing.Size(23, 22);
+            this.pbFixCopy.Size = new System.Drawing.Size(20, 20);
             this.pbFixCopy.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbFixCopy.TabIndex = 22;
             this.pbFixCopy.TabStop = false;
@@ -421,9 +436,9 @@
             this.pbChangeDelete.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.pbChangeDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbChangeDelete.Image = ((System.Drawing.Image)(resources.GetObject("pbChangeDelete.Image")));
-            this.pbChangeDelete.Location = new System.Drawing.Point(368, 109);
+            this.pbChangeDelete.Location = new System.Drawing.Point(380, 110);
             this.pbChangeDelete.Name = "pbChangeDelete";
-            this.pbChangeDelete.Size = new System.Drawing.Size(23, 21);
+            this.pbChangeDelete.Size = new System.Drawing.Size(20, 20);
             this.pbChangeDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbChangeDelete.TabIndex = 21;
             this.pbChangeDelete.TabStop = false;
@@ -436,9 +451,9 @@
             this.pbChangeEdit.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.pbChangeEdit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbChangeEdit.Image = ((System.Drawing.Image)(resources.GetObject("pbChangeEdit.Image")));
-            this.pbChangeEdit.Location = new System.Drawing.Point(391, 109);
+            this.pbChangeEdit.Location = new System.Drawing.Point(400, 110);
             this.pbChangeEdit.Name = "pbChangeEdit";
-            this.pbChangeEdit.Size = new System.Drawing.Size(23, 21);
+            this.pbChangeEdit.Size = new System.Drawing.Size(20, 20);
             this.pbChangeEdit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbChangeEdit.TabIndex = 20;
             this.pbChangeEdit.TabStop = false;
@@ -451,9 +466,9 @@
             this.pbChangeCopy.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.pbChangeCopy.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbChangeCopy.Image = ((System.Drawing.Image)(resources.GetObject("pbChangeCopy.Image")));
-            this.pbChangeCopy.Location = new System.Drawing.Point(414, 109);
+            this.pbChangeCopy.Location = new System.Drawing.Point(420, 110);
             this.pbChangeCopy.Name = "pbChangeCopy";
-            this.pbChangeCopy.Size = new System.Drawing.Size(23, 22);
+            this.pbChangeCopy.Size = new System.Drawing.Size(20, 20);
             this.pbChangeCopy.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbChangeCopy.TabIndex = 19;
             this.pbChangeCopy.TabStop = false;
@@ -466,9 +481,9 @@
             this.pbNewDelete.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.pbNewDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbNewDelete.Image = ((System.Drawing.Image)(resources.GetObject("pbNewDelete.Image")));
-            this.pbNewDelete.Location = new System.Drawing.Point(144, 109);
+            this.pbNewDelete.Location = new System.Drawing.Point(153, 110);
             this.pbNewDelete.Name = "pbNewDelete";
-            this.pbNewDelete.Size = new System.Drawing.Size(23, 21);
+            this.pbNewDelete.Size = new System.Drawing.Size(20, 20);
             this.pbNewDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbNewDelete.TabIndex = 18;
             this.pbNewDelete.TabStop = false;
@@ -481,9 +496,9 @@
             this.pbNewEdit.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.pbNewEdit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbNewEdit.Image = ((System.Drawing.Image)(resources.GetObject("pbNewEdit.Image")));
-            this.pbNewEdit.Location = new System.Drawing.Point(167, 109);
+            this.pbNewEdit.Location = new System.Drawing.Point(173, 110);
             this.pbNewEdit.Name = "pbNewEdit";
-            this.pbNewEdit.Size = new System.Drawing.Size(22, 21);
+            this.pbNewEdit.Size = new System.Drawing.Size(20, 20);
             this.pbNewEdit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbNewEdit.TabIndex = 17;
             this.pbNewEdit.TabStop = false;
@@ -496,9 +511,9 @@
             this.pbNewCopy.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.pbNewCopy.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbNewCopy.Image = ((System.Drawing.Image)(resources.GetObject("pbNewCopy.Image")));
-            this.pbNewCopy.Location = new System.Drawing.Point(189, 109);
+            this.pbNewCopy.Location = new System.Drawing.Point(193, 110);
             this.pbNewCopy.Name = "pbNewCopy";
-            this.pbNewCopy.Size = new System.Drawing.Size(22, 22);
+            this.pbNewCopy.Size = new System.Drawing.Size(20, 20);
             this.pbNewCopy.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbNewCopy.TabIndex = 16;
             this.pbNewCopy.TabStop = false;
@@ -511,9 +526,9 @@
             this.pbAddFixes.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.pbAddFixes.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbAddFixes.Image = global::ChangeLogManager.Properties.Resources.icon_add;
-            this.pbAddFixes.Location = new System.Drawing.Point(663, 109);
+            this.pbAddFixes.Location = new System.Drawing.Point(667, 110);
             this.pbAddFixes.Name = "pbAddFixes";
-            this.pbAddFixes.Size = new System.Drawing.Size(23, 21);
+            this.pbAddFixes.Size = new System.Drawing.Size(20, 20);
             this.pbAddFixes.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbAddFixes.TabIndex = 13;
             this.pbAddFixes.TabStop = false;
@@ -525,9 +540,9 @@
             this.pbAddChanges.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.pbAddChanges.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbAddChanges.Image = global::ChangeLogManager.Properties.Resources.icon_add;
-            this.pbAddChanges.Location = new System.Drawing.Point(437, 109);
+            this.pbAddChanges.Location = new System.Drawing.Point(440, 110);
             this.pbAddChanges.Name = "pbAddChanges";
-            this.pbAddChanges.Size = new System.Drawing.Size(23, 21);
+            this.pbAddChanges.Size = new System.Drawing.Size(20, 20);
             this.pbAddChanges.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbAddChanges.TabIndex = 12;
             this.pbAddChanges.TabStop = false;
@@ -539,9 +554,9 @@
             this.pbAddNew.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.pbAddNew.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbAddNew.Image = global::ChangeLogManager.Properties.Resources.icon_add;
-            this.pbAddNew.Location = new System.Drawing.Point(211, 109);
+            this.pbAddNew.Location = new System.Drawing.Point(213, 110);
             this.pbAddNew.Name = "pbAddNew";
-            this.pbAddNew.Size = new System.Drawing.Size(22, 21);
+            this.pbAddNew.Size = new System.Drawing.Size(20, 20);
             this.pbAddNew.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbAddNew.TabIndex = 11;
             this.pbAddNew.TabStop = false;
@@ -572,11 +587,119 @@
             this.toolTipDelete.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTipDelete.ToolTipTitle = "Delete";
             // 
+            // pbChangeUp
+            // 
+            this.pbChangeUp.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.pbChangeUp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbChangeUp.Image = ((System.Drawing.Image)(resources.GetObject("pbChangeUp.Image")));
+            this.pbChangeUp.Location = new System.Drawing.Point(360, 110);
+            this.pbChangeUp.Name = "pbChangeUp";
+            this.pbChangeUp.Size = new System.Drawing.Size(20, 10);
+            this.pbChangeUp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbChangeUp.TabIndex = 26;
+            this.pbChangeUp.TabStop = false;
+            this.toolTipUp.SetToolTip(this.pbChangeUp, "Move the selected item up");
+            this.pbChangeUp.Visible = false;
+            this.pbChangeUp.Click += new System.EventHandler(this.pbChangeUp_Click);
+            // 
+            // pbChangeDown
+            // 
+            this.pbChangeDown.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.pbChangeDown.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbChangeDown.Image = ((System.Drawing.Image)(resources.GetObject("pbChangeDown.Image")));
+            this.pbChangeDown.Location = new System.Drawing.Point(360, 120);
+            this.pbChangeDown.Name = "pbChangeDown";
+            this.pbChangeDown.Size = new System.Drawing.Size(20, 10);
+            this.pbChangeDown.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbChangeDown.TabIndex = 25;
+            this.pbChangeDown.TabStop = false;
+            this.toolTipDown.SetToolTip(this.pbChangeDown, "Move the selected item down");
+            this.pbChangeDown.Visible = false;
+            this.pbChangeDown.Click += new System.EventHandler(this.pbChangeDown_Click);
+            // 
+            // pbNewUp
+            // 
+            this.pbNewUp.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.pbNewUp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbNewUp.Image = ((System.Drawing.Image)(resources.GetObject("pbNewUp.Image")));
+            this.pbNewUp.Location = new System.Drawing.Point(133, 110);
+            this.pbNewUp.Name = "pbNewUp";
+            this.pbNewUp.Size = new System.Drawing.Size(20, 10);
+            this.pbNewUp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbNewUp.TabIndex = 28;
+            this.pbNewUp.TabStop = false;
+            this.toolTipUp.SetToolTip(this.pbNewUp, "Move the selected item up");
+            this.pbNewUp.Visible = false;
+            this.pbNewUp.Click += new System.EventHandler(this.pbNewUp_Click);
+            // 
+            // pbNewDown
+            // 
+            this.pbNewDown.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.pbNewDown.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbNewDown.Image = ((System.Drawing.Image)(resources.GetObject("pbNewDown.Image")));
+            this.pbNewDown.Location = new System.Drawing.Point(133, 120);
+            this.pbNewDown.Name = "pbNewDown";
+            this.pbNewDown.Size = new System.Drawing.Size(20, 10);
+            this.pbNewDown.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbNewDown.TabIndex = 27;
+            this.pbNewDown.TabStop = false;
+            this.toolTipDown.SetToolTip(this.pbNewDown, "Move the selected item down");
+            this.pbNewDown.Visible = false;
+            this.pbNewDown.Click += new System.EventHandler(this.pbNewDown_Click);
+            // 
+            // pbFixUp
+            // 
+            this.pbFixUp.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.pbFixUp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbFixUp.Image = ((System.Drawing.Image)(resources.GetObject("pbFixUp.Image")));
+            this.pbFixUp.Location = new System.Drawing.Point(587, 110);
+            this.pbFixUp.Name = "pbFixUp";
+            this.pbFixUp.Size = new System.Drawing.Size(20, 10);
+            this.pbFixUp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbFixUp.TabIndex = 30;
+            this.pbFixUp.TabStop = false;
+            this.toolTipUp.SetToolTip(this.pbFixUp, "Move the selected item up");
+            this.pbFixUp.Visible = false;
+            this.pbFixUp.Click += new System.EventHandler(this.pbFixUp_Click);
+            // 
+            // pbFixDown
+            // 
+            this.pbFixDown.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.pbFixDown.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbFixDown.Image = ((System.Drawing.Image)(resources.GetObject("pbFixDown.Image")));
+            this.pbFixDown.Location = new System.Drawing.Point(587, 120);
+            this.pbFixDown.Name = "pbFixDown";
+            this.pbFixDown.Size = new System.Drawing.Size(20, 10);
+            this.pbFixDown.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbFixDown.TabIndex = 29;
+            this.pbFixDown.TabStop = false;
+            this.toolTipDown.SetToolTip(this.pbFixDown, "Move the selected item down");
+            this.pbFixDown.Visible = false;
+            this.pbFixDown.Click += new System.EventHandler(this.pbFixDown_Click);
+            // 
+            // toolTipUp
+            // 
+            this.toolTipUp.AutomaticDelay = 1000;
+            this.toolTipUp.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTipUp.ToolTipTitle = "Move up";
+            // 
+            // toolTipDown
+            // 
+            this.toolTipDown.AutomaticDelay = 1000;
+            this.toolTipDown.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTipDown.ToolTipTitle = "Move down";
+            // 
             // fMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 496);
+            this.Controls.Add(this.pbFixUp);
+            this.Controls.Add(this.pbFixDown);
+            this.Controls.Add(this.pbNewUp);
+            this.Controls.Add(this.pbNewDown);
+            this.Controls.Add(this.pbChangeUp);
+            this.Controls.Add(this.pbChangeDown);
             this.Controls.Add(this.pbFixDelete);
             this.Controls.Add(this.pbFixEdit);
             this.Controls.Add(this.pbFixCopy);
@@ -621,6 +744,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbAddFixes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAddChanges)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAddNew)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbChangeUp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbChangeDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNewUp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNewDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFixUp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFixDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -673,6 +802,14 @@
         private System.Windows.Forms.ToolTip toolTipEdit;
         private System.Windows.Forms.ToolTip toolTipDelete;
         private System.Windows.Forms.ToolStripMenuItem saveUsToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pbChangeUp;
+        private System.Windows.Forms.PictureBox pbChangeDown;
+        private System.Windows.Forms.PictureBox pbNewUp;
+        private System.Windows.Forms.PictureBox pbNewDown;
+        private System.Windows.Forms.PictureBox pbFixUp;
+        private System.Windows.Forms.PictureBox pbFixDown;
+        private System.Windows.Forms.ToolTip toolTipUp;
+        private System.Windows.Forms.ToolTip toolTipDown;
     }
 }
 

@@ -282,33 +282,94 @@ namespace ChangeLogManager
             }
         }
 
+        // ListBox - UpDown ----------------------------------------------------------
+        private void pbNewUp_Click(object sender, EventArgs e)
+        {
+            if (lbNew.SelectedItems.Count != 0 && lbNew.SelectedIndex >= 1)
+            {
+                var currentItem = lbNew.SelectedItem;
+
+                lbNew.Items.Insert(lbNew.SelectedIndex - 1, currentItem.ToString());
+                lbNew.Items.RemoveAt(lbNew.Items.IndexOf(currentItem) + 2);
+                lbNew.SelectedItem = currentItem;
+            }
+        }
+
+        private void pbNewDown_Click(object sender, EventArgs e)
+        {
+            if (lbNew.SelectedItems.Count != 0 && lbNew.SelectedIndex < lbNew.Items.Count - 1)
+            {
+                var currentItem = lbNew.SelectedItem;
+
+                lbNew.Items.Insert(lbNew.SelectedIndex + 2, currentItem.ToString());
+                lbNew.Items.Remove(currentItem);
+                lbNew.SelectedItem = lbNew.Items[lbNew.Items.IndexOf(currentItem)];
+            }
+
+        }
+
+        private void pbChangeUp_Click(object sender, EventArgs e)
+        {
+            if (lbChanges.SelectedItems.Count != 0 && lbChanges.SelectedIndex >= 1)
+            {
+                var currentItem = lbChanges.SelectedItem;
+
+                lbChanges.Items.Insert(lbChanges.SelectedIndex - 1, currentItem.ToString());
+                lbChanges.Items.RemoveAt(lbChanges.Items.IndexOf(currentItem) + 2);
+                lbChanges.SelectedItem = currentItem;
+            }
+        }
+
+        private void pbChangeDown_Click(object sender, EventArgs e)
+        {
+            if (lbChanges.SelectedItems.Count != 0 && lbChanges.SelectedIndex < lbChanges.Items.Count - 1)
+            {
+                var currentItem = lbChanges.SelectedItem;
+
+                lbChanges.Items.Insert(lbChanges.SelectedIndex + 2, currentItem.ToString());
+                lbChanges.Items.Remove(currentItem);
+                lbChanges.SelectedItem = lbChanges.Items[lbChanges.Items.IndexOf(currentItem)];
+            }
+        }
+
+        private void pbFixUp_Click(object sender, EventArgs e)
+        {
+            if (lbFixes.SelectedItems.Count != 0 && lbFixes.SelectedIndex >= 1)
+            {
+                var currentItem = lbFixes.SelectedItem;
+
+                lbFixes.Items.Insert(lbFixes.SelectedIndex - 1, currentItem.ToString());
+                lbFixes.Items.RemoveAt(lbFixes.Items.IndexOf(currentItem) + 2);
+                lbFixes.SelectedItem = currentItem;
+            }
+        }
+
+        private void pbFixDown_Click(object sender, EventArgs e)
+        {
+            if (lbFixes.SelectedItems.Count != 0 && lbFixes.SelectedIndex < lbFixes.Items.Count - 1)
+            {
+                var currentItem = lbFixes.SelectedItem;
+
+                lbFixes.Items.Insert(lbFixes.SelectedIndex + 2, currentItem.ToString());
+                lbFixes.Items.Remove(currentItem);
+                lbFixes.SelectedItem = lbFixes.Items[lbFixes.Items.IndexOf(currentItem)];
+            }
+        }
 
         // ListBox -------------------------------------------------------------------
         private void lbNew_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(lbNew.SelectedIndex >= 0)
-                pbNewCopy.Visible = pbNewEdit.Visible = pbNewDelete.Visible = true;
-
-            else
-                pbNewCopy.Visible = pbNewEdit.Visible = pbNewDelete.Visible = false;
+            pbNewUp.Visible = pbNewDown.Visible =  pbNewCopy.Visible = pbNewEdit.Visible = pbNewDelete.Visible = lbNew.SelectedIndex >= 0;
         }
 
         private void lbChanges_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lbChanges.SelectedIndex >= 0)
-                pbChangeCopy.Visible = pbChangeEdit.Visible = pbChangeDelete.Visible = true;
-
-            else
-                pbChangeCopy.Visible = pbChangeEdit.Visible = pbChangeDelete.Visible = false;
+            pbChangeUp.Visible = pbChangeDown.Visible = pbChangeCopy.Visible = pbChangeEdit.Visible = pbChangeDelete.Visible = lbChanges.SelectedIndex >= 0;
         }
 
         private void lbFixes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lbFixes.SelectedIndex >= 0)
-                pbFixCopy.Visible = pbFixEdit.Visible = pbFixDelete.Visible = true;
-
-            else
-                pbFixCopy.Visible = pbFixEdit.Visible = pbFixDelete.Visible = false;
+            pbFixUp.Visible = pbFixDown.Visible = pbFixCopy.Visible = pbFixEdit.Visible = pbFixDelete.Visible = lbFixes.SelectedIndex >= 0;
         }
 
         // Status Strip --------------------------------------------------------------
