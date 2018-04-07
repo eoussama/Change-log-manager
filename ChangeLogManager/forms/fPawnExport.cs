@@ -21,6 +21,7 @@ namespace ChangeLogManager.forms
             cbDialogStyle.SelectedIndex = -1;
             cbRandomId.Checked = false;
             tbCommandName.Clear();
+            cbDialogStyle.SelectedIndex = 0;
             cbProcessor.SelectedIndex = 0;
             tbCaption.Text = fMain.changelogTitle.Text.Trim() + " - " + fMain.changelogVersion.Text.Trim();
         }

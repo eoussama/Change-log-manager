@@ -12,6 +12,6 @@ The application is still far from perfect, or maybe not?! both in design and fun
 - [X] Export in many formats (BBCode, Markdown, plain text, HTML, Pawn snippets)
 - [X] Template saving.
 - [X] Quick open recent files.
-- [X] Quick edit/delete/manage entries.
+- [X] Quick edit/delete/manage/move entries.
 
 > **Note**: upon using this tool, you'll notice a file called `config.cfg` create, do not delete it unless you want to reset all your recently opened files.

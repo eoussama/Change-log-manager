@@ -212,35 +212,31 @@ namespace ChangeLogManager.classes
 
                         try
                         {
-                            streamW.WriteLine("<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><meta name=\"author\" content=\"Eoussama\"><meta name=\"description\" content=\"A simple change log exported using ChangeLog Manager by Eoussama\"><meta name=\"keywords\" content=\"Changelog, fixed, changes, new features\"><meta name=\"application-name\" content=\"" + fMain.changelogTitle + "\">");
-                            streamW.WriteLine("<style>*{margin: 0px;padding: 0px;}body main{font-family: \"Arial\", sans-serif;background: linear-gradient(to bottom, #f4f4f4, grey);}body header h1{text-align: center;font-family: verdana, sans-serif;font-size: 60px;color: white;text-shadow: 2px 2px 5px black;background-color: #f4f4f4;border-bottom: 10px solid #403c36;}body header h1 #ver{position: relative;top: -25px;font-size: 18px;color: orange;}body main{padding: 10px;min-height: 100vh;}body main #content{position: relative;top: 40px;left: 50%;max-width: 600px;transform: translate(-50%, 0px);}body main #content h4{width: 150px;font-size: 20px;margin-top: 50px;color: #a9afaf;padding: 5px 5px 5px 10px;border-left: 5px solid #403c36;background-color: #403c36;border-radius: 6px 6px 0px 0px;cursor: pointer;transition-property: background-color, border-color;transition-duration: .5s;}body main #content h4 input{display: none;}body main #content h4:hover{background-color: #625d56;border-color: #625d56;}#content ul{padding: 10px 0px 10px 10px;width: 97%;list-style-position: inside;background-color: #a9afaf;border-radius: 0px 6px 6px 0px;border-left: 5px solid #403c36;box-shadow: 2px 2px 5px #403c36;color: #403c36;}body main #content i{position: relative;top: 20px;color: white;text-shadow: 1px 1px 1px black;}.listCont{position: relative;width: 600px;padding: 0px 0px 10px 0px;overflow-y: hidden;transition-property: height, opacity;transition-duration: .5s;opacity: 1;}</style>");
+                            streamW.WriteLine("<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><meta name=\"author\" content=\"Eoussama\"><meta name=\"description\" content=\"A simple change log exported using ChangeLog Manager by Eoussama\"><meta name=\"keywords\" content=\"Changelog, fixes, changes, new features\"><meta name=\"application-name\" content=\"" + fMain.changelogTitle.Text + "\">");
+                            streamW.WriteLine("<style>:root{--lightColor:#ddd;--darkColor:#1f2931;--grayColor:gray}*{margin:0;padding:0;font-family:\"Arial\",sans-serif}main::selection{background-color:var(--darkColor);color:var(--lightColor)}main{margin:auto;padding:50px;background:linear-gradient(to bottom,var(--lightColor),#f1f1f1)}h1{padding:10vh;background-color:var(--darkColor);color:var(--lightColor);text-align:center;font-size:50px}h1 small{color:var(--grayColor);font-size:20px}div.list{margin:auto;width:650px;overflow:hidden}div.list label{cursor: pointer;position:relative;display:block;padding:5px;width:150px;border-radius:3px 3px 0 0;background-color:var(--darkColor);color:var(--lightColor);font-size:20px;transition-property:background-color;transition-duration:0.3s;}div.list label:hover{background-color:#35434f;}div.list input{display:none}div.list input:checked+ul{opacity:0;padding:0;list-style-type:none}div.list ul{padding:20px 40px;color:var(--darkColor);border:2px solid var(--darkColor);border-radius:0 3px 3px 3px;transition-property:padding,opacity;transition-duration:.5s}div.list:not(:last-child){margin-bottom:50px}p{text-align:center}</style>");
                             streamW.WriteLine("<title>" + fMain.changelogTitle.Text + " - " + fMain.changelogVersion.Text + "</title>");
                             streamW.WriteLine("</head>");
                             streamW.WriteLine("<body>");
-                            streamW.WriteLine("<header><h1>" + fMain.changelogTitle.Text.Trim() + "<br><span id=\"ver\">" + fMain.changelogVersion.Text.Trim() + "</span></h1></header>");
-                            streamW.WriteLine("<main><div id=\"content\">");
+                            streamW.WriteLine("<header><h1>" + fMain.changelogTitle.Text.Trim() + "<br><small>" + fMain.changelogVersion.Text.Trim() + "</small></h1></header>");
+                            streamW.WriteLine("<main>");
                             // New features
-                            streamW.WriteLine("\r\n\r\n<label id=\"new\"><h4><input type=\"checkbox\" id=\"newCB\" checked><b>New features</b></h4></label>");
-                            streamW.WriteLine("<div class=\"listCont\" id=\"newList\"><ul>");
+                            streamW.WriteLine("\r\n\r\n<div class=\"list\"><label for=\"new\"><h4><b>New features</b></h4></label><input type=\"checkbox\" id=\"new\"><ul>");
                             foreach (var line in fMain.newFeatures.Items)
                                 streamW.WriteLine("<li>" + line.ToString() + "</li>");
                             streamW.WriteLine("</ul></div>");
 
                             // Changes
-                            streamW.WriteLine("\r\n\r\n<label id=\"changes\"><h4><input type=\"checkbox\" id=\"changesCB\" checked><b>Changes</b></h4></label>");
-                            streamW.WriteLine("<div class=\"listCont\" id=\"changesList\"><ul>");
+                            streamW.WriteLine("\r\n\r\n<div class=\"list\"><label for=\"changes\"><h4><b>Changes</b></h4></label><input type=\"checkbox\" id=\"changes\"><ul>");
                             foreach (var line in fMain.changes.Items)
                                 streamW.WriteLine("<li>" + line.ToString() + "</li>");
                             streamW.WriteLine("</ul></div>");
 
                             // Fixes
-                            streamW.WriteLine("\r\n\r\n<label id=\"fixes\"><h4><input type=\"checkbox\"id=\"fixesCB\" checked><b>Fixes</b></h4></label>");
-                            streamW.WriteLine("<div class=\"listCont\" id=\"fixesList\"><ul>");
+                            streamW.WriteLine("\r\n\r\n<div class=\"list\"><label for=\"fixes\"><h4><b>Fixes</b></h4></label><input type=\"checkbox\" id=\"fixes\"><ul>");
                             foreach (var line in fMain.fixes.Items)
                                 streamW.WriteLine("<li>" + line.ToString() + "</li>");
                             streamW.WriteLine("</ul></div>");
-                            streamW.WriteLine("\r\n\r\n\r\n<i>Exported on " + DateTime.Now + "</i>");
-                            streamW.WriteLine("</div></main><script type=\"text/javascript\">var _new=document.getElementById('new');var newCB=document.getElementById('newCB');var newList=document.getElementById('newList');var newLineCount=document.querySelectorAll('#newList ul li').length;var changes=document.getElementById('changes');var changesCB=document.getElementById('changesCB');var changesList=document.getElementById('changesList');var changesLineCount=document.querySelectorAll('#changesList ul li').length;var fixes=document.getElementById('fixes');var fixesCB=document.getElementById('fixesCB');var fixesList=document.getElementById('fixesList');var fixesLineCount=document.querySelectorAll('#fixesList ul li').length;_new.addEventListener('click', function(){if(newCB.checked==true){newList.style.height='0px';newList.style.opacity='0';}else{newList.style.opacity='1';newList.style.height=(newLineCount/1 * 23.3) + 'px';}});changes.addEventListener('click', function(){if(changesCB.checked==true){changesList.style.height='0px';changesList.style.opacity='0';}else{changesList.style.opacity='1';changesList.style.height=(changesLineCount/1 * 23.3) + 'px';}});fixes.onclick=addEventListener('click', function(){if(fixesCB.checked==true){fixesList.style.height='0px';fixesList.style.opacity='0';}else{fixesList.style.opacity='1';fixesList.style.height=(fixesLineCount/1 * 23.3) + 'px';}});</script></body></html>");
+                            streamW.WriteLine("\r\n\r\n\r\n<p><small><i>Exported on " + DateTime.Now + "</i></small></p></main></body></html>");
                             fMain.UpdateStatusStrip("Change-log was successfully exported in HTML format");
                         }
 
