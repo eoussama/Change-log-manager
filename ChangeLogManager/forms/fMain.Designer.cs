@@ -229,7 +229,7 @@
             this.ssInfo.Name = "ssInfo";
             this.ssInfo.Size = new System.Drawing.Size(700, 22);
             this.ssInfo.TabIndex = 14;
-            this.ssInfo.Text = "Change-log manager - version 0.1";
+            this.ssInfo.Text = "Change-log manager - version 0.3";
             // 
             // msMenu
             // 

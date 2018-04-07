@@ -118,7 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="rtbChangelog.Text" xml:space="preserve">
-    <value>  
+    <value> 
+  Version 0.3 - 4/7/2018
+    -Up Down movements for lists entries.
+    -Multiselect disactivated on file opening dialog.
+    -Markdown files are saved under the .md extension.
+    -Icons are smaller.
+    -Left padding added ti the "New features" label.
+    -Removed javascript from the HTML export.
+    -“Save as” typo fixed.
+    -Welcome panel open bug.
+    -DIALOG_STYLE bug with the pawn code export.
+    -Auto collapse for no reason for HTML export tabs.
+    -Lots of typo fixes, I hope I haven't slept up on any others.
+    -Bug with the application-name export in HTML files.
+    -Copy event exception handled.
+
   Version 0.2 - 2/26/2018
     - Welcome form.
     - Tons of bug fixes.

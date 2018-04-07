@@ -259,8 +259,13 @@ namespace ChangeLogManager
         {
             if (lbNew.SelectedIndex >= 0)
             {
-                Clipboard.SetText(lbNew.SelectedItem.ToString());
-                UpdateStatusStrip("Entry copied to your clipboard");
+                try
+                {
+                    Clipboard.SetText(lbNew.SelectedItem.ToString());
+                    UpdateStatusStrip("Entry copied to your clipboard");
+                }
+                
+                catch { }
             }
         }
 
@@ -268,8 +273,13 @@ namespace ChangeLogManager
         {
             if (lbChanges.SelectedIndex >= 0)
             {
-                Clipboard.SetText(lbChanges.SelectedItem.ToString());
-                UpdateStatusStrip("Entry copied to your clipboard");
+                try
+                {
+                    Clipboard.SetText(lbChanges.SelectedItem.ToString());
+                    UpdateStatusStrip("Entry copied to your clipboard");
+                }
+                
+                catch { }
             }
         }
 
@@ -277,8 +287,13 @@ namespace ChangeLogManager
         {
             if (lbFixes.SelectedIndex >= 0)
             {
-                Clipboard.SetText(lbFixes.SelectedItem.ToString());
-                UpdateStatusStrip("Entry copied to your clipboard");
+                try
+                {
+                    Clipboard.SetText(lbFixes.SelectedItem.ToString());
+                    UpdateStatusStrip("Entry copied to your clipboard");
+                }
+                
+                catch { }
             }
         }
 
@@ -376,7 +391,7 @@ namespace ChangeLogManager
         public static void UpdateStatusStrip(string text)
         {
             StatusStrip.Items.Clear();
-            StatusStrip.Items.Add("Change-log Manager - Version 0.2     |     \t " + text);
+            StatusStrip.Items.Add("Change-log Manager - Version 0.3     |     \t " + text);
         }
     }
 }

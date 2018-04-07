@@ -2,8 +2,7 @@
 ---
 
 ## Preview
-![Prev](https://i.imgur.com/AnwjQeK.png)
-
+![Prev](https://i.imgur.com/xPFzWT7.png)
 ## Description
 It’s always nice to have a lightweight tool to help you out with your daily-development activities while working on different projects, I found myself stating the changes I make on my projects on different *.txt files, in plain format, it was only a matter of time, till those dozens of files started to stack on each other, making it harder for me to find and/or review them later, I had this tool by my side for quite a while, served its purpose the way I wanted, and here I am sharing it here for anyone who’s interested in either improving it or using it.
 

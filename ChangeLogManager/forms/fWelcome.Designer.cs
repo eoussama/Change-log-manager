@@ -151,7 +151,7 @@
             this.lVersion.Name = "lVersion";
             this.lVersion.Size = new System.Drawing.Size(206, 16);
             this.lVersion.TabIndex = 1;
-            this.lVersion.Text = "Change-log Manager - v0.2";
+            this.lVersion.Text = "Change-log Manager - v0.3";
             // 
             // rtbChangelog
             // 
@@ -162,7 +162,7 @@
             this.rtbChangelog.Location = new System.Drawing.Point(8, 61);
             this.rtbChangelog.Name = "rtbChangelog";
             this.rtbChangelog.ReadOnly = true;
-            this.rtbChangelog.Size = new System.Drawing.Size(442, 150);
+            this.rtbChangelog.Size = new System.Drawing.Size(442, 351);
             this.rtbChangelog.TabIndex = 0;
             this.rtbChangelog.Text = resources.GetString("rtbChangelog.Text");
             // 
