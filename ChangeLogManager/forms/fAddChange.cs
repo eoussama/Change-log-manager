@@ -25,9 +25,15 @@ namespace ChangeLogManager
             bAdd.Enabled = (tbAdd.Text.Length > 0);
         }
 
+        private void tbAdd_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+                bAdd_Click(sender, e);
+        }
 
-        // Button ----------------------------------------------------------------------
-        private void bAdd_Click(object sender, EventArgs e)
+
+    // Button ----------------------------------------------------------------------
+    private void bAdd_Click(object sender, EventArgs e)
         {
             fMain.changes.Items.Add(tbAdd.Text);
             fMain.UpdateStatusStrip("Entry added");

@@ -151,7 +151,7 @@
             this.lVersion.Name = "lVersion";
             this.lVersion.Size = new System.Drawing.Size(206, 16);
             this.lVersion.TabIndex = 1;
-            this.lVersion.Text = "Change-log Manager - v0.3";
+            this.lVersion.Text = "Change-log Manager - v0.4";
             // 
             // rtbChangelog
             // 

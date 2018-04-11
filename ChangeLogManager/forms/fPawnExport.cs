@@ -149,15 +149,15 @@ namespace ChangeLogManager.forms
                 {
                     output += "{FFFFFF}* {FFFF00}New features{FFFFFF}\\n\\\n\t\t";
                     foreach (var item in fMain.newFeatures.Items)
-                        output += "+ " + item.ToString() + "\\n\\\n\t\t";
+                        output += "+ " + item.ToString().Replace("\"", "\\\"") + "\\n\\\n\t\t";
 
                     output += "\\n* {FFFF00}Changes{FFFFFF}\\n\\\n\t\t";
                     foreach (var item in fMain.changes.Items)
-                        output += "+ " + item.ToString() + "\\n\\\n\t\t";
+                        output += "+ " + item.ToString().Replace("\"", "\\\"") + "\\n\\\n\t\t";
 
                     output += "\\n* {FFFF00}Fixes{FFFFFF}\\n\\\n\t\t";
                     foreach (var item in fMain.fixes.Items)
-                        output += "+ " + item.ToString() + "\\n\\\n\t\t";
+                        output += "+ " + item.ToString().Replace("\"", "\\\"") + "\\n\\\n\t\t";
                     break;
                 }
 
@@ -165,15 +165,15 @@ namespace ChangeLogManager.forms
                 {
                     output += "{FFFFFF}* {FFFF00}New features{FFFFFF}\\n\\\n\t\t";
                     foreach (var item in fMain.newFeatures.Items)
-                        output += "+ " + item.ToString() + "\\n\\\n\t\t";
+                        output += "+ " + item.ToString().Replace("\"", "\\\"") + "\\n\\\n\t\t";
 
                     output += "* {FFFF00}Changes{FFFFFF}\\n\\\n\t\t";
                     foreach (var item in fMain.changes.Items)
-                        output += "+ " + item.ToString() + "\\n\\\n\t\t";
+                        output += "+ " + item.ToString().Replace("\"", "\\\"") + "\\n\\\n\t\t";
 
                     output += "* {FFFF00}Fixes{FFFFFF}\\n\\\n\t\t";
                     foreach (var item in fMain.fixes.Items)
-                        output += "+ " + item.ToString() + "\\n\\\n\t\t";
+                        output += "+ " + item.ToString().Replace("\"", "\\\"") + "\\n\\\n\t\t";
                     break;
                 }
             }
@@ -206,7 +206,7 @@ namespace ChangeLogManager.forms
 
         private void syntaxHighlight()
         {
-            Regex syntax = new Regex("(if)|(public)|(return)");
+            Regex syntax = new Regex("(if)|(public)|(return)|(true)|(false)");
             int index = rtbExport.SelectionStart;
 
             foreach(Match match in syntax.Matches(rtbExport.Text))

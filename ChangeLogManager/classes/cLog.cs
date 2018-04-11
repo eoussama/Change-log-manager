@@ -3,13 +3,12 @@ using System.IO;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using ChangeLogManager.forms;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Xml;
 
 namespace ChangeLogManager.classes
 {
-    public enum SaveType { Text = 1, BBCode, HTML, Markdown, Pawn }
+    public enum SaveType { Text = 1, BBCode, HTML, Markdown, Pawn, JSON, XML, YMAL }
 
     public static class cLog
     {
@@ -311,6 +310,184 @@ namespace ChangeLogManager.classes
                             streamW.WriteLine(fPawnExport.rtbCode.Text);
                             streamW.WriteLine("\r\n\r\n//Exported on " + DateTime.Now);
                             fMain.UpdateStatusStrip("Change-log was successfully exported as a PAWN snippet");
+                        }
+
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
+                        finally
+                        {
+                            streamW.Close();
+                        }
+                    }
+
+                    break;
+                }
+
+                case SaveType.JSON:
+                {
+                    SaveFileDialog saveF = new SaveFileDialog() { Title = "Change-log export in JSON format", Filter = "Change-log Files (*.json)|*.json", FileName = fMain.changelogTitle.Text + " - " + fMain.changelogVersion.Text };
+                    if (saveF.ShowDialog() == DialogResult.OK)
+                    {
+                        StreamWriter streamW = new StreamWriter(saveF.FileName);
+
+                        try
+                        {
+                            streamW.WriteLine("{");
+                            streamW.WriteLine("\t\"Head\" : {");
+                            streamW.WriteLine("\t\t\"Title\" : \"" + fMain.changelogTitle.Text.Trim() + "\",");
+                            streamW.WriteLine("\t\t\"Version\" : \"" + fMain.changelogVersion.Text.Trim() + "\"");
+                            streamW.WriteLine("\t},\r\n");
+
+                            streamW.WriteLine("\t\"Body\" : {");
+                            // New features
+                            streamW.WriteLine("\t\t\"New features\" : [");
+                            foreach (var line in fMain.newFeatures.Items)
+                                streamW.WriteLine("\t\t\t\"" + line.ToString().Replace("\"", "\\\"") + "\"" + (line.Equals(fMain.newFeatures.Items[fMain.newFeatures.Items.Count - 1].ToString()) ? "" : ","));
+                            streamW.WriteLine("\t\t],\r\n");
+
+                            // Changes
+                            streamW.WriteLine("\t\t\"Changes\" : [");
+                            foreach (var line in fMain.changes.Items)
+                                streamW.WriteLine("\t\t\t\"" + line.ToString().Replace("\"", "\\\"") + "\"" + (line.Equals(fMain.changes.Items[fMain.changes.Items.Count - 1].ToString()) ? "" : ","));
+                            streamW.WriteLine("\t\t],\r\n");
+
+                            // Fixes
+                            streamW.WriteLine("\t\t\"Fixes\" : [");
+                            foreach (var line in fMain.fixes.Items)
+                                streamW.WriteLine("\t\t\t\"" + line.ToString().Replace("\"", "\\\"") + "\"" + (line.Equals(fMain.fixes.Items[fMain.fixes.Items.Count - 1].ToString()) ? "" : ","));
+                            streamW.WriteLine("\t\t]");
+                            streamW.WriteLine("\t},\r\n");
+
+                            streamW.WriteLine("\t\"Footer\" : {");
+                            streamW.WriteLine("\t\t\"Export date\" : \"" + DateTime.Now + "\"");
+                            fMain.UpdateStatusStrip("Change-log was successfully exported in plain text");
+                            streamW.WriteLine("\t}");
+                            streamW.WriteLine("}");
+
+                            fMain.UpdateStatusStrip("Change-log was successfully exported in JSON format");
+                        }
+
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
+                        finally
+                        {
+                            streamW.Close();
+                        }
+                    }
+
+                    break;
+                }
+
+                case SaveType.XML:
+                {
+                    SaveFileDialog saveF = new SaveFileDialog() { Title = "Change-log export in XML format", Filter = "Change-log Files (*.xml)|*.xml", FileName = fMain.changelogTitle.Text + " - " + fMain.changelogVersion.Text };
+                    if (saveF.ShowDialog() == DialogResult.OK)
+                    {
+                        try
+                        {
+                            XmlDocument doc = new XmlDocument();
+                            XmlNode dec = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
+                            doc.AppendChild(dec);
+
+                            XmlNode root = doc.CreateElement("changelog");
+                            doc.AppendChild(root);
+                            XmlAttribute attr = doc.CreateAttribute("version");
+                            attr.Value = fMain.changelogVersion.Text.Trim();
+                            root.Attributes.Append(attr);
+
+                            XmlNode head = doc.CreateElement("head");
+                            root.AppendChild(head);
+                            XmlNode titleNode = doc.CreateElement("title");
+                            head.AppendChild(titleNode);
+                            titleNode.AppendChild(doc.CreateTextNode(fMain.changelogTitle.Text.Trim()));
+
+                            XmlNode body = doc.CreateElement("body");
+                            root.AppendChild(body);
+
+                            XmlNode newFNode = doc.CreateElement("new_features");
+                            body.AppendChild(newFNode);
+                            foreach(var line in fMain.newFeatures.Items)
+                            {
+                                XmlNode newFeatureNode = doc.CreateElement("feature");
+                                newFNode.AppendChild(newFeatureNode);
+                                newFeatureNode.AppendChild(doc.CreateTextNode(line.ToString()));
+                            }
+
+                            XmlNode changesNodes = doc.CreateElement("changes");
+                            body.AppendChild(changesNodes);
+                            foreach (var line in fMain.changes.Items)
+                            {
+                                XmlNode changeNode = doc.CreateElement("change");
+                                changesNodes.AppendChild(changeNode);
+                                changeNode.AppendChild(doc.CreateTextNode(line.ToString()));
+                            }
+
+                            XmlNode fixesNode = doc.CreateElement("fixes");
+                            body.AppendChild(fixesNode);
+                            foreach (var line in fMain.fixes.Items)
+                            {
+                                XmlNode fixNode = doc.CreateElement("fix");
+                                fixesNode.AppendChild(fixNode);
+                                fixNode.AppendChild(doc.CreateTextNode(line.ToString()));
+                            }
+
+                            XmlNode footer = doc.CreateElement("footer");
+                            root.AppendChild(footer);
+                            XmlNode dateNode = doc.CreateElement("export_date");
+                            footer.AppendChild(dateNode);
+                            dateNode.AppendChild(doc.CreateTextNode(DateTime.Now.ToString()));
+
+                            doc.Save(saveF.FileName);
+                            fMain.UpdateStatusStrip("Change-log was successfully exported in XML format");
+                        }
+
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+
+                    break;
+                }
+
+                case SaveType.YMAL:
+                {
+                    SaveFileDialog saveF = new SaveFileDialog() { Title = "Change-log export in YAML format", Filter = "Change-log Files (*.yaml)|*.yaml", FileName = fMain.changelogTitle.Text + " - " + fMain.changelogVersion.Text };
+                    if (saveF.ShowDialog() == DialogResult.OK)
+                    {
+                        StreamWriter streamW = new StreamWriter(saveF.FileName);
+
+                        try
+                        {
+                            streamW.WriteLine("---");
+                            streamW.WriteLine("Head:");
+                            streamW.WriteLine("  Title: " + fMain.changelogTitle.Text.Trim());
+                            streamW.WriteLine("  Version: " + fMain.changelogVersion.Text.Trim());
+
+                            streamW.WriteLine("\r\nBody:");
+                            streamW.WriteLine("  New features:");
+                            foreach (var line in fMain.newFeatures.Items)
+                                streamW.WriteLine($"    - {line.ToString()}");
+
+                            streamW.WriteLine("\r\n  Changes:");
+                            foreach (var line in fMain.changes.Items)
+                                streamW.WriteLine($"    - {line.ToString()}");
+
+                            streamW.WriteLine("\r\n  Fixes:");
+                            foreach (var line in fMain.fixes.Items)
+                                streamW.WriteLine($"    - {line.ToString()}");
+
+                            streamW.WriteLine("\r\nFooter:");
+                            streamW.WriteLine("  Export date: " + DateTime.Now);
+                            streamW.WriteLine("...");
+
+                            fMain.UpdateStatusStrip("Change-log was successfully exported in YAML format");
                         }
 
                         catch (Exception ex)

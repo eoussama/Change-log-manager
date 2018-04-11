@@ -26,6 +26,12 @@ namespace ChangeLogManager.forms
             bEdit.Enabled = (tbEdit.Text.Length > 0);
         }
 
+        private void tbEdit_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+                bEdit_Click(sender, e);
+        }
+
 
         // Button ----------------------------------------------------------------------
         private void bEdit_Click(object sender, EventArgs e)

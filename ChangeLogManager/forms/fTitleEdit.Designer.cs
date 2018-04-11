@@ -58,6 +58,7 @@
             this.tbEdit.Size = new System.Drawing.Size(316, 22);
             this.tbEdit.TabIndex = 4;
             this.tbEdit.TextChanged += new System.EventHandler(this.tbEdit_TextChanged);
+            this.tbEdit.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbEdit_KeyUp);
             // 
             // fTitleEdit
             // 

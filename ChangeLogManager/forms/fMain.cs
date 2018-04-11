@@ -145,6 +145,21 @@ namespace ChangeLogManager
             form.ShowDialog();
         }
 
+        private void jSONToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cLog.ExportLog(SaveType.JSON);
+        }
+
+        private void xMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cLog.ExportLog(SaveType.XML);
+        }
+
+        private void yAMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cLog.ExportLog(SaveType.YMAL);
+        }
+
 
         // MenuStrip - Edit ----------------------------------------------------------
         private void resetLogToolStripMenuItem_Click(object sender, EventArgs e)
@@ -297,6 +312,7 @@ namespace ChangeLogManager
             }
         }
 
+
         // ListBox - UpDown ----------------------------------------------------------
         private void pbNewUp_Click(object sender, EventArgs e)
         {
@@ -371,6 +387,7 @@ namespace ChangeLogManager
             }
         }
 
+
         // ListBox -------------------------------------------------------------------
         private void lbNew_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -387,11 +404,12 @@ namespace ChangeLogManager
             pbFixUp.Visible = pbFixDown.Visible = pbFixCopy.Visible = pbFixEdit.Visible = pbFixDelete.Visible = lbFixes.SelectedIndex >= 0;
         }
 
+
         // Status Strip --------------------------------------------------------------
         public static void UpdateStatusStrip(string text)
         {
             StatusStrip.Items.Clear();
-            StatusStrip.Items.Add("Change-log Manager - Version 0.3     |     \t " + text);
+            StatusStrip.Items.Add("Change-log Manager - Version 0.4     |     \t " + text);
         }
     }
 }

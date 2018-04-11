@@ -59,6 +59,7 @@
             this.tbAdd.Size = new System.Drawing.Size(316, 22);
             this.tbAdd.TabIndex = 2;
             this.tbAdd.TextChanged += new System.EventHandler(this.tbAdd_TextChanged);
+            this.tbAdd.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbAdd_KeyUp);
             // 
             // fAddChange
             // 

@@ -119,6 +119,13 @@
   </resheader>
   <data name="rtbChangelog.Text" xml:space="preserve">
     <value> 
+ Version 0.4 - 4/11/2018
+    -Various keybord shortcuts added.
+    -Return button form validation.
+    -Added various icons to the menuStrip.
+    -Added new export options: JSON, XML, YAML.
+    -A bug with double quotes conflict in the pawn export option is fixed.
+
   Version 0.3 - 4/7/2018
     -Up Down movements for lists entries.
     -Multiselect disactivated on file opening dialog.

@@ -196,6 +196,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon_main.ico" />
+    <None Include="images\icon_save.png" />
+    <None Include="images\icon_open.png" />
     <None Include="images\icon_delete.png" />
     <None Include="images\icon_edit.png" />
     <None Include="images\icon_copy.png" />

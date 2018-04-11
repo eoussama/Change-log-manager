@@ -59,50 +59,53 @@
             this.hTMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pawnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pbFixDelete = new System.Windows.Forms.PictureBox();
-            this.pbFixEdit = new System.Windows.Forms.PictureBox();
-            this.pbFixCopy = new System.Windows.Forms.PictureBox();
-            this.pbChangeDelete = new System.Windows.Forms.PictureBox();
-            this.pbChangeEdit = new System.Windows.Forms.PictureBox();
-            this.pbChangeCopy = new System.Windows.Forms.PictureBox();
-            this.pbNewDelete = new System.Windows.Forms.PictureBox();
-            this.pbNewEdit = new System.Windows.Forms.PictureBox();
-            this.pbNewCopy = new System.Windows.Forms.PictureBox();
+            this.toolTipAdd = new System.Windows.Forms.ToolTip(this.components);
             this.pbAddFixes = new System.Windows.Forms.PictureBox();
             this.pbAddChanges = new System.Windows.Forms.PictureBox();
             this.pbAddNew = new System.Windows.Forms.PictureBox();
-            this.toolTipAdd = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipCopy = new System.Windows.Forms.ToolTip(this.components);
+            this.pbFixCopy = new System.Windows.Forms.PictureBox();
+            this.pbChangeCopy = new System.Windows.Forms.PictureBox();
+            this.pbNewCopy = new System.Windows.Forms.PictureBox();
             this.toolTipEdit = new System.Windows.Forms.ToolTip(this.components);
+            this.pbFixEdit = new System.Windows.Forms.PictureBox();
+            this.pbChangeEdit = new System.Windows.Forms.PictureBox();
+            this.pbNewEdit = new System.Windows.Forms.PictureBox();
             this.toolTipDelete = new System.Windows.Forms.ToolTip(this.components);
-            this.pbChangeUp = new System.Windows.Forms.PictureBox();
-            this.pbChangeDown = new System.Windows.Forms.PictureBox();
-            this.pbNewUp = new System.Windows.Forms.PictureBox();
-            this.pbNewDown = new System.Windows.Forms.PictureBox();
-            this.pbFixUp = new System.Windows.Forms.PictureBox();
-            this.pbFixDown = new System.Windows.Forms.PictureBox();
+            this.pbFixDelete = new System.Windows.Forms.PictureBox();
+            this.pbChangeDelete = new System.Windows.Forms.PictureBox();
+            this.pbNewDelete = new System.Windows.Forms.PictureBox();
             this.toolTipUp = new System.Windows.Forms.ToolTip(this.components);
+            this.pbFixUp = new System.Windows.Forms.PictureBox();
+            this.pbNewUp = new System.Windows.Forms.PictureBox();
+            this.pbChangeUp = new System.Windows.Forms.PictureBox();
             this.toolTipDown = new System.Windows.Forms.ToolTip(this.components);
+            this.pbFixDown = new System.Windows.Forms.PictureBox();
+            this.pbNewDown = new System.Windows.Forms.PictureBox();
+            this.pbChangeDown = new System.Windows.Forms.PictureBox();
+            this.jSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.yAMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pTitle.SuspendLayout();
             this.msMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbFixDelete)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbFixEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbFixCopy)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbChangeDelete)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbChangeEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbChangeCopy)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNewDelete)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNewEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNewCopy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAddFixes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAddChanges)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAddNew)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbChangeUp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbChangeDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNewUp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNewDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFixCopy)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbChangeCopy)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNewCopy)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFixEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbChangeEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNewEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFixDelete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbChangeDelete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNewDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFixUp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNewUp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbChangeUp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFixDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNewDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbChangeDown)).BeginInit();
             this.SuspendLayout();
             // 
             // lTitle
@@ -262,42 +265,53 @@
             // welcomeToolStripMenuItem
             // 
             this.welcomeToolStripMenuItem.Name = "welcomeToolStripMenuItem";
-            this.welcomeToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.welcomeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
+            this.welcomeToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.welcomeToolStripMenuItem.Text = "Welcome";
             this.welcomeToolStripMenuItem.Click += new System.EventHandler(this.welcomeToolStripMenuItem_Click);
             // 
             // newToolStripMenuItem
             // 
+            this.newToolStripMenuItem.Image = global::ChangeLogManager.Properties.Resources.icon_new;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
+            this.openToolStripMenuItem.Image = global::ChangeLogManager.Properties.Resources.icon_open;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
+            this.saveToolStripMenuItem.Image = global::ChangeLogManager.Properties.Resources.icon_save;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveUsToolStripMenuItem
             // 
             this.saveUsToolStripMenuItem.Name = "saveUsToolStripMenuItem";
-            this.saveUsToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.saveUsToolStripMenuItem.ShortcutKeyDisplayString = "";
+            this.saveUsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.S)));
+            this.saveUsToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.saveUsToolStripMenuItem.Text = "Save as";
             this.saveUsToolStripMenuItem.Click += new System.EventHandler(this.saveUsToolStripMenuItem_Click);
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.quitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.quitToolStripMenuItem.Text = "Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
@@ -339,7 +353,10 @@
             this.bBCodeToolStripMenuItem,
             this.markdownToolStripMenuItem,
             this.hTMLToolStripMenuItem,
-            this.pawnToolStripMenuItem});
+            this.pawnToolStripMenuItem,
+            this.jSONToolStripMenuItem,
+            this.xMLToolStripMenuItem,
+            this.yAMLToolStripMenuItem});
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
             this.exportToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.exportToolStripMenuItem.Text = "Export";
@@ -347,35 +364,35 @@
             // textFileToolStripMenuItem
             // 
             this.textFileToolStripMenuItem.Name = "textFileToolStripMenuItem";
-            this.textFileToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.textFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.textFileToolStripMenuItem.Text = "Text file";
             this.textFileToolStripMenuItem.Click += new System.EventHandler(this.textFileToolStripMenuItem_Click);
             // 
             // bBCodeToolStripMenuItem
             // 
             this.bBCodeToolStripMenuItem.Name = "bBCodeToolStripMenuItem";
-            this.bBCodeToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.bBCodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.bBCodeToolStripMenuItem.Text = "BB Code";
             this.bBCodeToolStripMenuItem.Click += new System.EventHandler(this.bBCodeToolStripMenuItem_Click);
             // 
             // markdownToolStripMenuItem
             // 
             this.markdownToolStripMenuItem.Name = "markdownToolStripMenuItem";
-            this.markdownToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.markdownToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.markdownToolStripMenuItem.Text = "Markdown";
             this.markdownToolStripMenuItem.Click += new System.EventHandler(this.markdownToolStripMenuItem_Click);
             // 
             // hTMLToolStripMenuItem
             // 
             this.hTMLToolStripMenuItem.Name = "hTMLToolStripMenuItem";
-            this.hTMLToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.hTMLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.hTMLToolStripMenuItem.Text = "HTML";
             this.hTMLToolStripMenuItem.Click += new System.EventHandler(this.hTMLToolStripMenuItem_Click);
             // 
             // pawnToolStripMenuItem
             // 
             this.pawnToolStripMenuItem.Name = "pawnToolStripMenuItem";
-            this.pawnToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.pawnToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.pawnToolStripMenuItem.Text = "Pawn";
             this.pawnToolStripMenuItem.Click += new System.EventHandler(this.pawnToolStripMenuItem_Click);
             // 
@@ -386,140 +403,11 @@
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
-            // pbFixDelete
+            // toolTipAdd
             // 
-            this.pbFixDelete.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.pbFixDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbFixDelete.Image = ((System.Drawing.Image)(resources.GetObject("pbFixDelete.Image")));
-            this.pbFixDelete.Location = new System.Drawing.Point(607, 110);
-            this.pbFixDelete.Name = "pbFixDelete";
-            this.pbFixDelete.Size = new System.Drawing.Size(20, 20);
-            this.pbFixDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbFixDelete.TabIndex = 24;
-            this.pbFixDelete.TabStop = false;
-            this.toolTipDelete.SetToolTip(this.pbFixDelete, "Delete the selected item");
-            this.pbFixDelete.Visible = false;
-            this.pbFixDelete.Click += new System.EventHandler(this.pbFixDelete_Click);
-            // 
-            // pbFixEdit
-            // 
-            this.pbFixEdit.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.pbFixEdit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbFixEdit.Image = ((System.Drawing.Image)(resources.GetObject("pbFixEdit.Image")));
-            this.pbFixEdit.Location = new System.Drawing.Point(627, 110);
-            this.pbFixEdit.Name = "pbFixEdit";
-            this.pbFixEdit.Size = new System.Drawing.Size(20, 20);
-            this.pbFixEdit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbFixEdit.TabIndex = 23;
-            this.pbFixEdit.TabStop = false;
-            this.toolTipEdit.SetToolTip(this.pbFixEdit, "Edit the selected item");
-            this.pbFixEdit.Visible = false;
-            this.pbFixEdit.Click += new System.EventHandler(this.pbFixEdit_Click);
-            // 
-            // pbFixCopy
-            // 
-            this.pbFixCopy.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.pbFixCopy.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbFixCopy.Image = ((System.Drawing.Image)(resources.GetObject("pbFixCopy.Image")));
-            this.pbFixCopy.Location = new System.Drawing.Point(647, 110);
-            this.pbFixCopy.Name = "pbFixCopy";
-            this.pbFixCopy.Size = new System.Drawing.Size(20, 20);
-            this.pbFixCopy.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbFixCopy.TabIndex = 22;
-            this.pbFixCopy.TabStop = false;
-            this.toolTipCopy.SetToolTip(this.pbFixCopy, "Copy the selected item");
-            this.pbFixCopy.Visible = false;
-            this.pbFixCopy.Click += new System.EventHandler(this.pbFixCopy_Click);
-            // 
-            // pbChangeDelete
-            // 
-            this.pbChangeDelete.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.pbChangeDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbChangeDelete.Image = ((System.Drawing.Image)(resources.GetObject("pbChangeDelete.Image")));
-            this.pbChangeDelete.Location = new System.Drawing.Point(380, 110);
-            this.pbChangeDelete.Name = "pbChangeDelete";
-            this.pbChangeDelete.Size = new System.Drawing.Size(20, 20);
-            this.pbChangeDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbChangeDelete.TabIndex = 21;
-            this.pbChangeDelete.TabStop = false;
-            this.toolTipDelete.SetToolTip(this.pbChangeDelete, "Delete the selected item");
-            this.pbChangeDelete.Visible = false;
-            this.pbChangeDelete.Click += new System.EventHandler(this.pbChangeDelete_Click);
-            // 
-            // pbChangeEdit
-            // 
-            this.pbChangeEdit.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.pbChangeEdit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbChangeEdit.Image = ((System.Drawing.Image)(resources.GetObject("pbChangeEdit.Image")));
-            this.pbChangeEdit.Location = new System.Drawing.Point(400, 110);
-            this.pbChangeEdit.Name = "pbChangeEdit";
-            this.pbChangeEdit.Size = new System.Drawing.Size(20, 20);
-            this.pbChangeEdit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbChangeEdit.TabIndex = 20;
-            this.pbChangeEdit.TabStop = false;
-            this.toolTipEdit.SetToolTip(this.pbChangeEdit, "Edit the selected item");
-            this.pbChangeEdit.Visible = false;
-            this.pbChangeEdit.Click += new System.EventHandler(this.pbChangeEdit_Click);
-            // 
-            // pbChangeCopy
-            // 
-            this.pbChangeCopy.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.pbChangeCopy.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbChangeCopy.Image = ((System.Drawing.Image)(resources.GetObject("pbChangeCopy.Image")));
-            this.pbChangeCopy.Location = new System.Drawing.Point(420, 110);
-            this.pbChangeCopy.Name = "pbChangeCopy";
-            this.pbChangeCopy.Size = new System.Drawing.Size(20, 20);
-            this.pbChangeCopy.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbChangeCopy.TabIndex = 19;
-            this.pbChangeCopy.TabStop = false;
-            this.toolTipCopy.SetToolTip(this.pbChangeCopy, "Copy the selected item");
-            this.pbChangeCopy.Visible = false;
-            this.pbChangeCopy.Click += new System.EventHandler(this.pbChangeCopy_Click);
-            // 
-            // pbNewDelete
-            // 
-            this.pbNewDelete.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.pbNewDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbNewDelete.Image = ((System.Drawing.Image)(resources.GetObject("pbNewDelete.Image")));
-            this.pbNewDelete.Location = new System.Drawing.Point(153, 110);
-            this.pbNewDelete.Name = "pbNewDelete";
-            this.pbNewDelete.Size = new System.Drawing.Size(20, 20);
-            this.pbNewDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbNewDelete.TabIndex = 18;
-            this.pbNewDelete.TabStop = false;
-            this.toolTipDelete.SetToolTip(this.pbNewDelete, "Delete the selected item");
-            this.pbNewDelete.Visible = false;
-            this.pbNewDelete.Click += new System.EventHandler(this.pbNewDelete_Click);
-            // 
-            // pbNewEdit
-            // 
-            this.pbNewEdit.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.pbNewEdit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbNewEdit.Image = ((System.Drawing.Image)(resources.GetObject("pbNewEdit.Image")));
-            this.pbNewEdit.Location = new System.Drawing.Point(173, 110);
-            this.pbNewEdit.Name = "pbNewEdit";
-            this.pbNewEdit.Size = new System.Drawing.Size(20, 20);
-            this.pbNewEdit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbNewEdit.TabIndex = 17;
-            this.pbNewEdit.TabStop = false;
-            this.toolTipEdit.SetToolTip(this.pbNewEdit, "Edit the selected item");
-            this.pbNewEdit.Visible = false;
-            this.pbNewEdit.Click += new System.EventHandler(this.pbNewEdit_Click);
-            // 
-            // pbNewCopy
-            // 
-            this.pbNewCopy.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.pbNewCopy.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbNewCopy.Image = ((System.Drawing.Image)(resources.GetObject("pbNewCopy.Image")));
-            this.pbNewCopy.Location = new System.Drawing.Point(193, 110);
-            this.pbNewCopy.Name = "pbNewCopy";
-            this.pbNewCopy.Size = new System.Drawing.Size(20, 20);
-            this.pbNewCopy.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbNewCopy.TabIndex = 16;
-            this.pbNewCopy.TabStop = false;
-            this.toolTipCopy.SetToolTip(this.pbNewCopy, "Copy the selected item");
-            this.pbNewCopy.Visible = false;
-            this.pbNewCopy.Click += new System.EventHandler(this.pbNewCopy_Click);
+            this.toolTipAdd.AutomaticDelay = 1000;
+            this.toolTipAdd.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTipAdd.ToolTipTitle = "Add";
             // 
             // pbAddFixes
             // 
@@ -563,17 +451,56 @@
             this.toolTipAdd.SetToolTip(this.pbAddNew, "Add a new entry to the list box");
             this.pbAddNew.Click += new System.EventHandler(this.pbAddNew_Click);
             // 
-            // toolTipAdd
-            // 
-            this.toolTipAdd.AutomaticDelay = 1000;
-            this.toolTipAdd.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.toolTipAdd.ToolTipTitle = "Add";
-            // 
             // toolTipCopy
             // 
             this.toolTipCopy.AutomaticDelay = 1000;
             this.toolTipCopy.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTipCopy.ToolTipTitle = "Copy";
+            // 
+            // pbFixCopy
+            // 
+            this.pbFixCopy.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.pbFixCopy.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbFixCopy.Image = ((System.Drawing.Image)(resources.GetObject("pbFixCopy.Image")));
+            this.pbFixCopy.Location = new System.Drawing.Point(647, 110);
+            this.pbFixCopy.Name = "pbFixCopy";
+            this.pbFixCopy.Size = new System.Drawing.Size(20, 20);
+            this.pbFixCopy.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbFixCopy.TabIndex = 22;
+            this.pbFixCopy.TabStop = false;
+            this.toolTipCopy.SetToolTip(this.pbFixCopy, "Copy the selected item");
+            this.pbFixCopy.Visible = false;
+            this.pbFixCopy.Click += new System.EventHandler(this.pbFixCopy_Click);
+            // 
+            // pbChangeCopy
+            // 
+            this.pbChangeCopy.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.pbChangeCopy.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbChangeCopy.Image = ((System.Drawing.Image)(resources.GetObject("pbChangeCopy.Image")));
+            this.pbChangeCopy.Location = new System.Drawing.Point(420, 110);
+            this.pbChangeCopy.Name = "pbChangeCopy";
+            this.pbChangeCopy.Size = new System.Drawing.Size(20, 20);
+            this.pbChangeCopy.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbChangeCopy.TabIndex = 19;
+            this.pbChangeCopy.TabStop = false;
+            this.toolTipCopy.SetToolTip(this.pbChangeCopy, "Copy the selected item");
+            this.pbChangeCopy.Visible = false;
+            this.pbChangeCopy.Click += new System.EventHandler(this.pbChangeCopy_Click);
+            // 
+            // pbNewCopy
+            // 
+            this.pbNewCopy.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.pbNewCopy.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbNewCopy.Image = ((System.Drawing.Image)(resources.GetObject("pbNewCopy.Image")));
+            this.pbNewCopy.Location = new System.Drawing.Point(193, 110);
+            this.pbNewCopy.Name = "pbNewCopy";
+            this.pbNewCopy.Size = new System.Drawing.Size(20, 20);
+            this.pbNewCopy.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbNewCopy.TabIndex = 16;
+            this.pbNewCopy.TabStop = false;
+            this.toolTipCopy.SetToolTip(this.pbNewCopy, "Copy the selected item");
+            this.pbNewCopy.Visible = false;
+            this.pbNewCopy.Click += new System.EventHandler(this.pbNewCopy_Click);
             // 
             // toolTipEdit
             // 
@@ -581,71 +508,107 @@
             this.toolTipEdit.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTipEdit.ToolTipTitle = "Edit";
             // 
+            // pbFixEdit
+            // 
+            this.pbFixEdit.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.pbFixEdit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbFixEdit.Image = ((System.Drawing.Image)(resources.GetObject("pbFixEdit.Image")));
+            this.pbFixEdit.Location = new System.Drawing.Point(627, 110);
+            this.pbFixEdit.Name = "pbFixEdit";
+            this.pbFixEdit.Size = new System.Drawing.Size(20, 20);
+            this.pbFixEdit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbFixEdit.TabIndex = 23;
+            this.pbFixEdit.TabStop = false;
+            this.toolTipEdit.SetToolTip(this.pbFixEdit, "Edit the selected item");
+            this.pbFixEdit.Visible = false;
+            this.pbFixEdit.Click += new System.EventHandler(this.pbFixEdit_Click);
+            // 
+            // pbChangeEdit
+            // 
+            this.pbChangeEdit.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.pbChangeEdit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbChangeEdit.Image = ((System.Drawing.Image)(resources.GetObject("pbChangeEdit.Image")));
+            this.pbChangeEdit.Location = new System.Drawing.Point(400, 110);
+            this.pbChangeEdit.Name = "pbChangeEdit";
+            this.pbChangeEdit.Size = new System.Drawing.Size(20, 20);
+            this.pbChangeEdit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbChangeEdit.TabIndex = 20;
+            this.pbChangeEdit.TabStop = false;
+            this.toolTipEdit.SetToolTip(this.pbChangeEdit, "Edit the selected item");
+            this.pbChangeEdit.Visible = false;
+            this.pbChangeEdit.Click += new System.EventHandler(this.pbChangeEdit_Click);
+            // 
+            // pbNewEdit
+            // 
+            this.pbNewEdit.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.pbNewEdit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbNewEdit.Image = ((System.Drawing.Image)(resources.GetObject("pbNewEdit.Image")));
+            this.pbNewEdit.Location = new System.Drawing.Point(173, 110);
+            this.pbNewEdit.Name = "pbNewEdit";
+            this.pbNewEdit.Size = new System.Drawing.Size(20, 20);
+            this.pbNewEdit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbNewEdit.TabIndex = 17;
+            this.pbNewEdit.TabStop = false;
+            this.toolTipEdit.SetToolTip(this.pbNewEdit, "Edit the selected item");
+            this.pbNewEdit.Visible = false;
+            this.pbNewEdit.Click += new System.EventHandler(this.pbNewEdit_Click);
+            // 
             // toolTipDelete
             // 
             this.toolTipDelete.AutomaticDelay = 1000;
             this.toolTipDelete.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTipDelete.ToolTipTitle = "Delete";
             // 
-            // pbChangeUp
+            // pbFixDelete
             // 
-            this.pbChangeUp.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.pbChangeUp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbChangeUp.Image = ((System.Drawing.Image)(resources.GetObject("pbChangeUp.Image")));
-            this.pbChangeUp.Location = new System.Drawing.Point(360, 110);
-            this.pbChangeUp.Name = "pbChangeUp";
-            this.pbChangeUp.Size = new System.Drawing.Size(20, 10);
-            this.pbChangeUp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbChangeUp.TabIndex = 26;
-            this.pbChangeUp.TabStop = false;
-            this.toolTipUp.SetToolTip(this.pbChangeUp, "Move the selected item up");
-            this.pbChangeUp.Visible = false;
-            this.pbChangeUp.Click += new System.EventHandler(this.pbChangeUp_Click);
+            this.pbFixDelete.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.pbFixDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbFixDelete.Image = ((System.Drawing.Image)(resources.GetObject("pbFixDelete.Image")));
+            this.pbFixDelete.Location = new System.Drawing.Point(607, 110);
+            this.pbFixDelete.Name = "pbFixDelete";
+            this.pbFixDelete.Size = new System.Drawing.Size(20, 20);
+            this.pbFixDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbFixDelete.TabIndex = 24;
+            this.pbFixDelete.TabStop = false;
+            this.toolTipDelete.SetToolTip(this.pbFixDelete, "Delete the selected item");
+            this.pbFixDelete.Visible = false;
+            this.pbFixDelete.Click += new System.EventHandler(this.pbFixDelete_Click);
             // 
-            // pbChangeDown
+            // pbChangeDelete
             // 
-            this.pbChangeDown.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.pbChangeDown.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbChangeDown.Image = ((System.Drawing.Image)(resources.GetObject("pbChangeDown.Image")));
-            this.pbChangeDown.Location = new System.Drawing.Point(360, 120);
-            this.pbChangeDown.Name = "pbChangeDown";
-            this.pbChangeDown.Size = new System.Drawing.Size(20, 10);
-            this.pbChangeDown.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbChangeDown.TabIndex = 25;
-            this.pbChangeDown.TabStop = false;
-            this.toolTipDown.SetToolTip(this.pbChangeDown, "Move the selected item down");
-            this.pbChangeDown.Visible = false;
-            this.pbChangeDown.Click += new System.EventHandler(this.pbChangeDown_Click);
+            this.pbChangeDelete.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.pbChangeDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbChangeDelete.Image = ((System.Drawing.Image)(resources.GetObject("pbChangeDelete.Image")));
+            this.pbChangeDelete.Location = new System.Drawing.Point(380, 110);
+            this.pbChangeDelete.Name = "pbChangeDelete";
+            this.pbChangeDelete.Size = new System.Drawing.Size(20, 20);
+            this.pbChangeDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbChangeDelete.TabIndex = 21;
+            this.pbChangeDelete.TabStop = false;
+            this.toolTipDelete.SetToolTip(this.pbChangeDelete, "Delete the selected item");
+            this.pbChangeDelete.Visible = false;
+            this.pbChangeDelete.Click += new System.EventHandler(this.pbChangeDelete_Click);
             // 
-            // pbNewUp
+            // pbNewDelete
             // 
-            this.pbNewUp.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.pbNewUp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbNewUp.Image = ((System.Drawing.Image)(resources.GetObject("pbNewUp.Image")));
-            this.pbNewUp.Location = new System.Drawing.Point(133, 110);
-            this.pbNewUp.Name = "pbNewUp";
-            this.pbNewUp.Size = new System.Drawing.Size(20, 10);
-            this.pbNewUp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbNewUp.TabIndex = 28;
-            this.pbNewUp.TabStop = false;
-            this.toolTipUp.SetToolTip(this.pbNewUp, "Move the selected item up");
-            this.pbNewUp.Visible = false;
-            this.pbNewUp.Click += new System.EventHandler(this.pbNewUp_Click);
+            this.pbNewDelete.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.pbNewDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbNewDelete.Image = ((System.Drawing.Image)(resources.GetObject("pbNewDelete.Image")));
+            this.pbNewDelete.Location = new System.Drawing.Point(153, 110);
+            this.pbNewDelete.Name = "pbNewDelete";
+            this.pbNewDelete.Size = new System.Drawing.Size(20, 20);
+            this.pbNewDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbNewDelete.TabIndex = 18;
+            this.pbNewDelete.TabStop = false;
+            this.toolTipDelete.SetToolTip(this.pbNewDelete, "Delete the selected item");
+            this.pbNewDelete.Visible = false;
+            this.pbNewDelete.Click += new System.EventHandler(this.pbNewDelete_Click);
             // 
-            // pbNewDown
+            // toolTipUp
             // 
-            this.pbNewDown.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.pbNewDown.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbNewDown.Image = ((System.Drawing.Image)(resources.GetObject("pbNewDown.Image")));
-            this.pbNewDown.Location = new System.Drawing.Point(133, 120);
-            this.pbNewDown.Name = "pbNewDown";
-            this.pbNewDown.Size = new System.Drawing.Size(20, 10);
-            this.pbNewDown.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbNewDown.TabIndex = 27;
-            this.pbNewDown.TabStop = false;
-            this.toolTipDown.SetToolTip(this.pbNewDown, "Move the selected item down");
-            this.pbNewDown.Visible = false;
-            this.pbNewDown.Click += new System.EventHandler(this.pbNewDown_Click);
+            this.toolTipUp.AutomaticDelay = 1000;
+            this.toolTipUp.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTipUp.ToolTipTitle = "Move up";
             // 
             // pbFixUp
             // 
@@ -662,6 +625,42 @@
             this.pbFixUp.Visible = false;
             this.pbFixUp.Click += new System.EventHandler(this.pbFixUp_Click);
             // 
+            // pbNewUp
+            // 
+            this.pbNewUp.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.pbNewUp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbNewUp.Image = ((System.Drawing.Image)(resources.GetObject("pbNewUp.Image")));
+            this.pbNewUp.Location = new System.Drawing.Point(133, 110);
+            this.pbNewUp.Name = "pbNewUp";
+            this.pbNewUp.Size = new System.Drawing.Size(20, 10);
+            this.pbNewUp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbNewUp.TabIndex = 28;
+            this.pbNewUp.TabStop = false;
+            this.toolTipUp.SetToolTip(this.pbNewUp, "Move the selected item up");
+            this.pbNewUp.Visible = false;
+            this.pbNewUp.Click += new System.EventHandler(this.pbNewUp_Click);
+            // 
+            // pbChangeUp
+            // 
+            this.pbChangeUp.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.pbChangeUp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbChangeUp.Image = ((System.Drawing.Image)(resources.GetObject("pbChangeUp.Image")));
+            this.pbChangeUp.Location = new System.Drawing.Point(360, 110);
+            this.pbChangeUp.Name = "pbChangeUp";
+            this.pbChangeUp.Size = new System.Drawing.Size(20, 10);
+            this.pbChangeUp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbChangeUp.TabIndex = 26;
+            this.pbChangeUp.TabStop = false;
+            this.toolTipUp.SetToolTip(this.pbChangeUp, "Move the selected item up");
+            this.pbChangeUp.Visible = false;
+            this.pbChangeUp.Click += new System.EventHandler(this.pbChangeUp_Click);
+            // 
+            // toolTipDown
+            // 
+            this.toolTipDown.AutomaticDelay = 1000;
+            this.toolTipDown.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTipDown.ToolTipTitle = "Move down";
+            // 
             // pbFixDown
             // 
             this.pbFixDown.BackColor = System.Drawing.SystemColors.WindowFrame;
@@ -677,17 +676,56 @@
             this.pbFixDown.Visible = false;
             this.pbFixDown.Click += new System.EventHandler(this.pbFixDown_Click);
             // 
-            // toolTipUp
+            // pbNewDown
             // 
-            this.toolTipUp.AutomaticDelay = 1000;
-            this.toolTipUp.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.toolTipUp.ToolTipTitle = "Move up";
+            this.pbNewDown.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.pbNewDown.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbNewDown.Image = ((System.Drawing.Image)(resources.GetObject("pbNewDown.Image")));
+            this.pbNewDown.Location = new System.Drawing.Point(133, 120);
+            this.pbNewDown.Name = "pbNewDown";
+            this.pbNewDown.Size = new System.Drawing.Size(20, 10);
+            this.pbNewDown.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbNewDown.TabIndex = 27;
+            this.pbNewDown.TabStop = false;
+            this.toolTipDown.SetToolTip(this.pbNewDown, "Move the selected item down");
+            this.pbNewDown.Visible = false;
+            this.pbNewDown.Click += new System.EventHandler(this.pbNewDown_Click);
             // 
-            // toolTipDown
+            // pbChangeDown
             // 
-            this.toolTipDown.AutomaticDelay = 1000;
-            this.toolTipDown.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.toolTipDown.ToolTipTitle = "Move down";
+            this.pbChangeDown.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.pbChangeDown.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbChangeDown.Image = ((System.Drawing.Image)(resources.GetObject("pbChangeDown.Image")));
+            this.pbChangeDown.Location = new System.Drawing.Point(360, 120);
+            this.pbChangeDown.Name = "pbChangeDown";
+            this.pbChangeDown.Size = new System.Drawing.Size(20, 10);
+            this.pbChangeDown.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbChangeDown.TabIndex = 25;
+            this.pbChangeDown.TabStop = false;
+            this.toolTipDown.SetToolTip(this.pbChangeDown, "Move the selected item down");
+            this.pbChangeDown.Visible = false;
+            this.pbChangeDown.Click += new System.EventHandler(this.pbChangeDown_Click);
+            // 
+            // jSONToolStripMenuItem
+            // 
+            this.jSONToolStripMenuItem.Name = "jSONToolStripMenuItem";
+            this.jSONToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.jSONToolStripMenuItem.Text = "JSON";
+            this.jSONToolStripMenuItem.Click += new System.EventHandler(this.jSONToolStripMenuItem_Click);
+            // 
+            // xMLToolStripMenuItem
+            // 
+            this.xMLToolStripMenuItem.Name = "xMLToolStripMenuItem";
+            this.xMLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.xMLToolStripMenuItem.Text = "XML";
+            this.xMLToolStripMenuItem.Click += new System.EventHandler(this.xMLToolStripMenuItem_Click);
+            // 
+            // yAMLToolStripMenuItem
+            // 
+            this.yAMLToolStripMenuItem.Name = "yAMLToolStripMenuItem";
+            this.yAMLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.yAMLToolStripMenuItem.Text = "YAML";
+            this.yAMLToolStripMenuItem.Click += new System.EventHandler(this.yAMLToolStripMenuItem_Click);
             // 
             // fMain
             // 
@@ -732,24 +770,24 @@
             this.pTitle.ResumeLayout(false);
             this.msMenu.ResumeLayout(false);
             this.msMenu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbFixDelete)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbFixEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbFixCopy)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbChangeDelete)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbChangeEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbChangeCopy)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNewDelete)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNewEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNewCopy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAddFixes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAddChanges)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAddNew)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbChangeUp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbChangeDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNewUp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNewDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFixCopy)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbChangeCopy)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNewCopy)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFixEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbChangeEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNewEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFixDelete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbChangeDelete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNewDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFixUp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNewUp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbChangeUp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFixDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNewDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbChangeDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -810,6 +848,9 @@
         private System.Windows.Forms.PictureBox pbFixDown;
         private System.Windows.Forms.ToolTip toolTipUp;
         private System.Windows.Forms.ToolTip toolTipDown;
+        private System.Windows.Forms.ToolStripMenuItem jSONToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xMLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem yAMLToolStripMenuItem;
     }
 }
 
