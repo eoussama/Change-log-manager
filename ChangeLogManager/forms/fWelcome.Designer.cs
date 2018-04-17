@@ -1,4 +1,6 @@
-﻿namespace ChangeLogManager.forms
+﻿using ChangeLogManager.classes;
+
+namespace ChangeLogManager.forms
 {
     partial class fWelcome
     {
@@ -151,7 +153,7 @@
             this.lVersion.Name = "lVersion";
             this.lVersion.Size = new System.Drawing.Size(206, 16);
             this.lVersion.TabIndex = 1;
-            this.lVersion.Text = "Change-log Manager - v0.4";
+            this.lVersion.Text = Config.name + " - " + Config.version;
             // 
             // rtbChangelog
             // 
@@ -178,7 +180,7 @@
             this.MaximizeBox = false;
             this.Name = "fWelcome";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Change-log Manager";
+            this.Text = Config.name;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.fWelcome_FormClosed);
             this.pMenu.ResumeLayout(false);
             this.pRecentCount.ResumeLayout(false);

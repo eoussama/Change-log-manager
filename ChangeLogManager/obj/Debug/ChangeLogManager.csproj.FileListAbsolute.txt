@@ -42,3 +42,4 @@ C:\Users\Eoussama\source\repos\Change-log-manager\ChangeLogManager\obj\Debug\Cha
 C:\Users\Eoussama\source\repos\Change-log-manager\ChangeLogManager\obj\Debug\ChangeLogManager.csproj.CoreCompileInputs.cache
 C:\Users\Eoussama\source\repos\Change-log-manager\ChangeLogManager\obj\Debug\ChangeLogManager.exe
 C:\Users\Eoussama\source\repos\Change-log-manager\ChangeLogManager\obj\Debug\ChangeLogManager.pdb
+C:\Users\Eoussama\source\repos\Change-log-manager\ChangeLogManager\obj\Debug\ChangeLogManager.forms.fSQLExport.resources

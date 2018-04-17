@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes\cLog.cs" />
+    <Compile Include="classes\Config.cs" />
     <Compile Include="forms\fAddChange.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +103,12 @@
     </Compile>
     <Compile Include="forms\fPawnExport.Designer.cs">
       <DependentUpon>fPawnExport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\fSQLExport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\fSQLExport.Designer.cs">
+      <DependentUpon>fSQLExport.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\fTitleEdit.cs">
       <SubType>Form</SubType>
@@ -160,6 +167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\fPawnExport.resx">
       <DependentUpon>fPawnExport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\fSQLExport.resx">
+      <DependentUpon>fSQLExport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\fTitleEdit.resx">
       <DependentUpon>fTitleEdit.cs</DependentUpon>

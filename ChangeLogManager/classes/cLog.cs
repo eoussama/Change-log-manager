@@ -8,7 +8,7 @@ using System.Xml;
 
 namespace ChangeLogManager.classes
 {
-    public enum SaveType { Text = 1, BBCode, HTML, Markdown, Pawn, JSON, XML, YMAL }
+    public enum SaveType { Text = 1, BBCode, HTML, Markdown, Pawn, JSON, XML, YMAL, SQL }
 
     public static class cLog
     {
@@ -40,7 +40,7 @@ namespace ChangeLogManager.classes
                     if (Regex.IsMatch(line, @"^\[Title: (.)*\]$"))
                         fMain.changelogTitle.Text = line.Substring(8, line.Length - 9);
                     else if (Regex.IsMatch(line, @"^\[Version: (.)*\]$"))
-                        fMain.changelogVersion.Text = line.Substring(10, line.Length - 11);
+                        fMain.changelogVersion.Text = "Version " + line.Substring(10, line.Length - 11);
                     else if (Regex.IsMatch(line, @"^\[New feature: (.)*\]$"))
                         fMain.newFeatures.Items.Add(line.Substring(14, line.Length - 15));
                     else if (Regex.IsMatch(line, @"^\[Change: (.)*\]$"))
@@ -72,7 +72,7 @@ namespace ChangeLogManager.classes
                 try
                 {
                     streamW.WriteLine("[Title: " + fMain.changelogTitle.Text.Trim() + "]");
-                    streamW.WriteLine("[Version: " + fMain.changelogVersion.Text.Trim() + "]");
+                    streamW.WriteLine("[Version: " + fMain.changelogVersion.Text.Substring(8).Trim() + "]");
 
                     // New features
                     foreach (var line in fMain.newFeatures.Items)
@@ -110,384 +110,475 @@ namespace ChangeLogManager.classes
             switch (type)
             {
                 case SaveType.Text:
-                {
-                    SaveFileDialog saveF = new SaveFileDialog() { Title = "Change-log export as text file", Filter = "Change-log Files (*.log)|*.log", FileName = fMain.changelogTitle.Text + " - " + fMain.changelogVersion.Text };
-                    if (saveF.ShowDialog() == DialogResult.OK)
                     {
-                        StreamWriter streamW = new StreamWriter(saveF.FileName);
-
-                        try
+                        SaveFileDialog saveF = new SaveFileDialog() { Title = "Change-log export as text file", Filter = "Change-log Files (*.log)|*.log", FileName = fMain.changelogTitle.Text + " - " + fMain.changelogVersion.Text };
+                        if (saveF.ShowDialog() == DialogResult.OK)
                         {
-                            streamW.WriteLine("Title: " + fMain.changelogTitle.Text.Trim());
-                            streamW.WriteLine("Version: " + fMain.changelogVersion.Text.Trim());
+                            StreamWriter streamW = new StreamWriter(saveF.FileName);
 
-                            // New features
-                            streamW.WriteLine("\r\n\r\n* New features");
-                            foreach (var line in fMain.newFeatures.Items)
-                                streamW.WriteLine("\t-" + line.ToString());
+                            try
+                            {
+                                streamW.WriteLine("Title: " + fMain.changelogTitle.Text.Trim());
+                                streamW.WriteLine("Version: " + fMain.changelogVersion.Text.Substring(8).Trim());
 
-                            // Changes
-                            streamW.WriteLine("\r\n\r\n* Changes");
-                            foreach (var line in fMain.changes.Items)
-                                streamW.WriteLine("\t-" + line.ToString());
+                                // New features
+                                streamW.WriteLine("\r\n\r\n* New features");
+                                foreach (var line in fMain.newFeatures.Items)
+                                    streamW.WriteLine("\t-" + line.ToString());
 
-                            // Fixes
-                            streamW.WriteLine("\r\n\r\n* Fixes");
-                            foreach (var line in fMain.fixes.Items)
-                                streamW.WriteLine("\t-" + line.ToString());
+                                // Changes
+                                streamW.WriteLine("\r\n\r\n* Changes");
+                                foreach (var line in fMain.changes.Items)
+                                    streamW.WriteLine("\t-" + line.ToString());
 
-                            streamW.WriteLine("\r\n\r\n\r\nExported on " + DateTime.Now);
-                            fMain.UpdateStatusStrip("Change-log was successfully exported in plain text");
+                                // Fixes
+                                streamW.WriteLine("\r\n\r\n* Fixes");
+                                foreach (var line in fMain.fixes.Items)
+                                    streamW.WriteLine("\t-" + line.ToString());
+
+                                streamW.WriteLine("\r\n\r\n\r\nExported on " + DateTime.Now);
+                                fMain.UpdateStatusStrip("Change-log was successfully exported in plain text");
+                            }
+
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+
+                            finally
+                            {
+                                streamW.Close();
+                            }
                         }
 
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-
-                        finally
-                        {
-                            streamW.Close();
-                        }
+                        break;
                     }
-
-                    break;
-                }
 
                 case SaveType.BBCode:
-                {
-                    SaveFileDialog saveF = new SaveFileDialog() { Title = "Change-log export in BBCode", Filter = "Change-log Files (*.txt)|*.txt", FileName = fMain.changelogTitle.Text + " - " + fMain.changelogVersion.Text };
-                    if (saveF.ShowDialog() == DialogResult.OK)
                     {
-                        StreamWriter streamW = new StreamWriter(saveF.FileName);
-
-                        try
+                        SaveFileDialog saveF = new SaveFileDialog() { Title = "Change-log export in BBCode", Filter = "Change-log Files (*.txt)|*.txt", FileName = fMain.changelogTitle.Text + " - " + fMain.changelogVersion.Text };
+                        if (saveF.ShowDialog() == DialogResult.OK)
                         {
-                            streamW.WriteLine("[B][SIZE=6][CENTER] " + fMain.changelogTitle.Text.Trim() + " [/CENTER][/SIZE][/B]");
-                            streamW.WriteLine("[B][SIZE=2][CENTER]" + fMain.changelogVersion.Text.Trim() + "[/CENTER][/SIZE][/B]");
+                            StreamWriter streamW = new StreamWriter(saveF.FileName);
 
-                            // New features
-                            streamW.WriteLine("\r\n\r\n[B]New features[/B][CODE][LIST]");
-                            foreach (var line in fMain.newFeatures.Items)
-                                streamW.WriteLine("[*]" + line.ToString());
-                            streamW.WriteLine("[/LIST][/CODE]");
+                            try
+                            {
+                                streamW.WriteLine("[B][SIZE=6][CENTER] " + fMain.changelogTitle.Text.Trim() + " [/CENTER][/SIZE][/B]");
+                                streamW.WriteLine("[B][SIZE=2][CENTER]" + fMain.changelogVersion.Text.Substring(8).Trim() + "[/CENTER][/SIZE][/B]");
 
-                            // Changes
-                            streamW.WriteLine("\r\n\r\n[B]Changes[/B][CODE][LIST]");
-                            foreach (var line in fMain.changes.Items)
-                                streamW.WriteLine("[*]" + line.ToString());
-                            streamW.WriteLine("[/LIST][/CODE]");
+                                // New features
+                                streamW.WriteLine("\r\n\r\n[B]New features[/B][CODE][LIST]");
+                                foreach (var line in fMain.newFeatures.Items)
+                                    streamW.WriteLine("[*]" + line.ToString());
+                                streamW.WriteLine("[/LIST][/CODE]");
 
-                            // Fixes
-                            streamW.WriteLine("\r\n\r\n[B]Fixes[/B][CODE][LIST]");
-                            foreach (var line in fMain.fixes.Items)
-                                streamW.WriteLine("[*]" + line.ToString());
-                            streamW.WriteLine("[/LIST][/CODE]");
+                                // Changes
+                                streamW.WriteLine("\r\n\r\n[B]Changes[/B][CODE][LIST]");
+                                foreach (var line in fMain.changes.Items)
+                                    streamW.WriteLine("[*]" + line.ToString());
+                                streamW.WriteLine("[/LIST][/CODE]");
 
-                            streamW.WriteLine("\r\n\r\n\r\n[I]Exported on " + DateTime.Now + "[/I]");
-                            fMain.UpdateStatusStrip("Change-log was successfully exported in BBCode");
+                                // Fixes
+                                streamW.WriteLine("\r\n\r\n[B]Fixes[/B][CODE][LIST]");
+                                foreach (var line in fMain.fixes.Items)
+                                    streamW.WriteLine("[*]" + line.ToString());
+                                streamW.WriteLine("[/LIST][/CODE]");
+
+                                streamW.WriteLine("\r\n\r\n\r\n[I]Exported on " + DateTime.Now + "[/I]");
+                                fMain.UpdateStatusStrip("Change-log was successfully exported in BBCode");
+                            }
+
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+
+                            finally
+                            {
+                                streamW.Close();
+                            }
                         }
 
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-
-                        finally
-                        {
-                            streamW.Close();
-                        }
+                        break;
                     }
-
-                    break;
-                }
 
                 case SaveType.HTML:
-                {
-                    SaveFileDialog saveF = new SaveFileDialog() { Title = "Change-log export in HTML format", Filter = "Change-log Files (*.html)|*.html", FileName = fMain.changelogTitle.Text + " - " + fMain.changelogVersion.Text };
-                    if (saveF.ShowDialog() == DialogResult.OK)
                     {
-                        StreamWriter streamW = new StreamWriter(saveF.FileName);
-
-                        try
+                        SaveFileDialog saveF = new SaveFileDialog() { Title = "Change-log export in HTML format", Filter = "Change-log Files (*.html)|*.html", FileName = fMain.changelogTitle.Text + " - " + fMain.changelogVersion.Text };
+                        if (saveF.ShowDialog() == DialogResult.OK)
                         {
-                            streamW.WriteLine("<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><meta name=\"author\" content=\"Eoussama\"><meta name=\"description\" content=\"A simple change log exported using ChangeLog Manager by Eoussama\"><meta name=\"keywords\" content=\"Changelog, fixes, changes, new features\"><meta name=\"application-name\" content=\"" + fMain.changelogTitle.Text + "\">");
-                            streamW.WriteLine("<style>:root{--lightColor:#ddd;--darkColor:#1f2931;--grayColor:gray}*{margin:0;padding:0;font-family:\"Arial\",sans-serif}main::selection{background-color:var(--darkColor);color:var(--lightColor)}main{margin:auto;padding:50px;background:linear-gradient(to bottom,var(--lightColor),#f1f1f1)}h1{padding:10vh;background-color:var(--darkColor);color:var(--lightColor);text-align:center;font-size:50px}h1 small{color:var(--grayColor);font-size:20px}div.list{margin:auto;width:650px;overflow:hidden}div.list label{cursor: pointer;position:relative;display:block;padding:5px;width:150px;border-radius:3px 3px 0 0;background-color:var(--darkColor);color:var(--lightColor);font-size:20px;transition-property:background-color;transition-duration:0.3s;}div.list label:hover{background-color:#35434f;}div.list input{display:none}div.list input:checked+ul{opacity:0;padding:0;list-style-type:none}div.list ul{padding:20px 40px;color:var(--darkColor);border:2px solid var(--darkColor);border-radius:0 3px 3px 3px;transition-property:padding,opacity;transition-duration:.5s}div.list:not(:last-child){margin-bottom:50px}p{text-align:center}</style>");
-                            streamW.WriteLine("<title>" + fMain.changelogTitle.Text + " - " + fMain.changelogVersion.Text + "</title>");
-                            streamW.WriteLine("</head>");
-                            streamW.WriteLine("<body>");
-                            streamW.WriteLine("<header><h1>" + fMain.changelogTitle.Text.Trim() + "<br><small>" + fMain.changelogVersion.Text.Trim() + "</small></h1></header>");
-                            streamW.WriteLine("<main>");
-                            // New features
-                            streamW.WriteLine("\r\n\r\n<div class=\"list\"><label for=\"new\"><h4><b>New features</b></h4></label><input type=\"checkbox\" id=\"new\"><ul>");
-                            foreach (var line in fMain.newFeatures.Items)
-                                streamW.WriteLine("<li>" + line.ToString() + "</li>");
-                            streamW.WriteLine("</ul></div>");
+                            StreamWriter streamW = new StreamWriter(saveF.FileName);
 
-                            // Changes
-                            streamW.WriteLine("\r\n\r\n<div class=\"list\"><label for=\"changes\"><h4><b>Changes</b></h4></label><input type=\"checkbox\" id=\"changes\"><ul>");
-                            foreach (var line in fMain.changes.Items)
-                                streamW.WriteLine("<li>" + line.ToString() + "</li>");
-                            streamW.WriteLine("</ul></div>");
+                            try
+                            {
+                                streamW.WriteLine("<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><meta name=\"author\" content=\"Eoussama\"><meta name=\"description\" content=\"A simple change log exported using ChangeLog Manager by Eoussama\"><meta name=\"keywords\" content=\"Changelog, fixes, changes, new features\"><meta name=\"application-name\" content=\"" + fMain.changelogTitle.Text + "\">");
+                                streamW.WriteLine("<style>:root{--lightColor:#ddd;--darkColor:#1f2931;--grayColor:gray}*{margin:0;padding:0;font-family:\"Arial\",sans-serif}main::selection{background-color:var(--darkColor);color:var(--lightColor)}main{margin:auto;padding:50px;background:linear-gradient(to bottom,var(--lightColor),#f1f1f1)}h1{padding:10vh;background-color:var(--darkColor);color:var(--lightColor);text-align:center;font-size:50px}h1 small{color:var(--grayColor);font-size:20px}div.list{margin:auto;width:650px;overflow:hidden}div.list label{cursor: pointer;position:relative;display:block;padding:5px;width:150px;border-radius:3px 3px 0 0;background-color:var(--darkColor);color:var(--lightColor);font-size:20px;transition-property:background-color;transition-duration:0.3s;}div.list label:hover{background-color:#35434f;}div.list input{display:none}div.list input:checked+ul{opacity:0;padding:0;list-style-type:none}div.list ul{padding:20px 40px;color:var(--darkColor);border:2px solid var(--darkColor);border-radius:0 3px 3px 3px;transition-property:padding,opacity;transition-duration:.5s}div.list:not(:last-child){margin-bottom:50px}p{text-align:center}</style>");
+                                streamW.WriteLine("<title>" + fMain.changelogTitle.Text.Trim() + " - " + fMain.changelogVersion.Text.Substring(8).Trim() + "</title>");
+                                streamW.WriteLine("</head>");
+                                streamW.WriteLine("<body>");
+                                streamW.WriteLine("<header><h1>" + fMain.changelogTitle.Text.Trim() + "<br><small>" + fMain.changelogVersion.Text.Trim() + "</small></h1></header>");
+                                streamW.WriteLine("<main>");
+                                // New features
+                                streamW.WriteLine("\r\n\r\n<div class=\"list\"><label for=\"new\"><h4><b>New features</b></h4></label><input type=\"checkbox\" id=\"new\"><ul>");
+                                foreach (var line in fMain.newFeatures.Items)
+                                    streamW.WriteLine("<li>" + line.ToString() + "</li>");
+                                streamW.WriteLine("</ul></div>");
 
-                            // Fixes
-                            streamW.WriteLine("\r\n\r\n<div class=\"list\"><label for=\"fixes\"><h4><b>Fixes</b></h4></label><input type=\"checkbox\" id=\"fixes\"><ul>");
-                            foreach (var line in fMain.fixes.Items)
-                                streamW.WriteLine("<li>" + line.ToString() + "</li>");
-                            streamW.WriteLine("</ul></div>");
-                            streamW.WriteLine("\r\n\r\n\r\n<p><small><i>Exported on " + DateTime.Now + "</i></small></p></main></body></html>");
-                            fMain.UpdateStatusStrip("Change-log was successfully exported in HTML format");
+                                // Changes
+                                streamW.WriteLine("\r\n\r\n<div class=\"list\"><label for=\"changes\"><h4><b>Changes</b></h4></label><input type=\"checkbox\" id=\"changes\"><ul>");
+                                foreach (var line in fMain.changes.Items)
+                                    streamW.WriteLine("<li>" + line.ToString() + "</li>");
+                                streamW.WriteLine("</ul></div>");
+
+                                // Fixes
+                                streamW.WriteLine("\r\n\r\n<div class=\"list\"><label for=\"fixes\"><h4><b>Fixes</b></h4></label><input type=\"checkbox\" id=\"fixes\"><ul>");
+                                foreach (var line in fMain.fixes.Items)
+                                    streamW.WriteLine("<li>" + line.ToString() + "</li>");
+                                streamW.WriteLine("</ul></div>");
+                                streamW.WriteLine("\r\n\r\n\r\n<p><small><i>Exported on " + DateTime.Now + "</i></small></p></main></body></html>");
+                                fMain.UpdateStatusStrip("Change-log was successfully exported in HTML format");
+                            }
+
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+
+                            finally
+                            {
+                                streamW.Close();
+                            }
                         }
 
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-
-                        finally
-                        {
-                            streamW.Close();
-                        }
+                        break;
                     }
-
-                    break;
-                }
 
                 case SaveType.Markdown:
-                {
-                    SaveFileDialog saveF = new SaveFileDialog() { Title = "Change-log export in markdown format", Filter = "Change-log Files (*.md)|*.md", FileName = fMain.changelogTitle.Text + " - " + fMain.changelogVersion.Text };
-                    if (saveF.ShowDialog() == DialogResult.OK)
                     {
-                        StreamWriter streamW = new StreamWriter(saveF.FileName);
-
-                        try
+                        SaveFileDialog saveF = new SaveFileDialog() { Title = "Change-log export in markdown format", Filter = "Change-log Files (*.md)|*.md", FileName = fMain.changelogTitle.Text + " - " + fMain.changelogVersion.Text };
+                        if (saveF.ShowDialog() == DialogResult.OK)
                         {
-                            streamW.WriteLine("# **" + fMain.changelogTitle.Text.Trim() + "**");
-                            streamW.WriteLine("##### *" + fMain.changelogVersion.Text.Trim() + "*");
+                            StreamWriter streamW = new StreamWriter(saveF.FileName);
 
-                            // New features
-                            streamW.WriteLine("\r\n\r\n>#### **New features**");
-                            foreach (var line in fMain.newFeatures.Items)
-                                streamW.WriteLine("- " + line.ToString());
+                            try
+                            {
+                                streamW.WriteLine("# **" + fMain.changelogTitle.Text.Trim() + "**");
+                                streamW.WriteLine("##### *" + fMain.changelogVersion.Text.Substring(8).Trim() + "*");
 
-                            // Changes
-                            streamW.WriteLine("\r\n\r\n>#### **Changes**");
-                            foreach (var line in fMain.changes.Items)
-                                streamW.WriteLine("- " + line.ToString());
+                                // New features
+                                streamW.WriteLine("\r\n\r\n>#### **New features**");
+                                foreach (var line in fMain.newFeatures.Items)
+                                    streamW.WriteLine("- " + line.ToString());
 
-                            // Fixes
-                            streamW.WriteLine("\r\n\r\n>#### **Fixes**");
-                            foreach (var line in fMain.fixes.Items)
-                                streamW.WriteLine("- " + line.ToString());
+                                // Changes
+                                streamW.WriteLine("\r\n\r\n>#### **Changes**");
+                                foreach (var line in fMain.changes.Items)
+                                    streamW.WriteLine("- " + line.ToString());
 
-                            streamW.WriteLine("\r\n\r\n\r\n*Exported on " + DateTime.Now + "*");
-                            fMain.UpdateStatusStrip("Change-log was successfully exported in Markdown format");
+                                // Fixes
+                                streamW.WriteLine("\r\n\r\n>#### **Fixes**");
+                                foreach (var line in fMain.fixes.Items)
+                                    streamW.WriteLine("- " + line.ToString());
+
+                                streamW.WriteLine("\r\n\r\n\r\n*Exported on " + DateTime.Now + "*");
+                                fMain.UpdateStatusStrip("Change-log was successfully exported in Markdown format");
+                            }
+
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+
+                            finally
+                            {
+                                streamW.Close();
+                            }
                         }
 
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-
-                        finally
-                        {
-                            streamW.Close();
-                        }
+                        break;
                     }
-
-                    break;
-                }
 
                 case SaveType.Pawn:
-                {
-                    SaveFileDialog saveF = new SaveFileDialog() { Title = "Change-log export in pawn syntax", Filter = "Change-log Files (*.pwn)|*.pwn", FileName = fMain.changelogTitle.Text + " - " + fMain.changelogVersion.Text };
-                    if (saveF.ShowDialog() == DialogResult.OK)
                     {
-                        StreamWriter streamW = new StreamWriter(saveF.FileName);
-
-                        try
+                        SaveFileDialog saveF = new SaveFileDialog() { Title = "Change-log export in pawn syntax", Filter = "Change-log Files (*.pwn)|*.pwn", FileName = fMain.changelogTitle.Text.Trim() + " - " + fMain.changelogVersion.Text.Substring(8).Trim() };
+                        if (saveF.ShowDialog() == DialogResult.OK)
                         {
-                            streamW.WriteLine(fPawnExport.rtbCode.Text);
-                            streamW.WriteLine("\r\n\r\n//Exported on " + DateTime.Now);
-                            fMain.UpdateStatusStrip("Change-log was successfully exported as a PAWN snippet");
+                            StreamWriter streamW = new StreamWriter(saveF.FileName);
+
+                            try
+                            {
+                                streamW.WriteLine(fPawnExport.rtbCode.Text);
+                                streamW.WriteLine("\r\n\r\n//Exported on " + DateTime.Now);
+                                fMain.UpdateStatusStrip("Change-log was successfully exported as a PAWN snippet");
+                            }
+
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+
+                            finally
+                            {
+                                streamW.Close();
+                            }
                         }
 
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-
-                        finally
-                        {
-                            streamW.Close();
-                        }
+                        break;
                     }
-
-                    break;
-                }
 
                 case SaveType.JSON:
-                {
-                    SaveFileDialog saveF = new SaveFileDialog() { Title = "Change-log export in JSON format", Filter = "Change-log Files (*.json)|*.json", FileName = fMain.changelogTitle.Text + " - " + fMain.changelogVersion.Text };
-                    if (saveF.ShowDialog() == DialogResult.OK)
                     {
-                        StreamWriter streamW = new StreamWriter(saveF.FileName);
-
-                        try
+                        SaveFileDialog saveF = new SaveFileDialog() { Title = "Change-log export in JSON format", Filter = "Change-log Files (*.json)|*.json", FileName = fMain.changelogTitle.Text.Trim() + " - " + fMain.changelogVersion.Text.Substring(8).Trim() };
+                        if (saveF.ShowDialog() == DialogResult.OK)
                         {
-                            streamW.WriteLine("{");
-                            streamW.WriteLine("\t\"Head\" : {");
-                            streamW.WriteLine("\t\t\"Title\" : \"" + fMain.changelogTitle.Text.Trim() + "\",");
-                            streamW.WriteLine("\t\t\"Version\" : \"" + fMain.changelogVersion.Text.Trim() + "\"");
-                            streamW.WriteLine("\t},\r\n");
+                            StreamWriter streamW = new StreamWriter(saveF.FileName);
 
-                            streamW.WriteLine("\t\"Body\" : {");
-                            // New features
-                            streamW.WriteLine("\t\t\"New features\" : [");
-                            foreach (var line in fMain.newFeatures.Items)
-                                streamW.WriteLine("\t\t\t\"" + line.ToString().Replace("\"", "\\\"") + "\"" + (line.Equals(fMain.newFeatures.Items[fMain.newFeatures.Items.Count - 1].ToString()) ? "" : ","));
-                            streamW.WriteLine("\t\t],\r\n");
+                            try
+                            {
+                                streamW.WriteLine("{");
+                                streamW.WriteLine("\t\"Head\" : {");
+                                streamW.WriteLine("\t\t\"Title\" : \"" + fMain.changelogTitle.Text.Trim() + "\",");
+                                streamW.WriteLine("\t\t\"Version\" : \"" + fMain.changelogVersion.Text.Trim() + "\"");
+                                streamW.WriteLine("\t},\r\n");
 
-                            // Changes
-                            streamW.WriteLine("\t\t\"Changes\" : [");
-                            foreach (var line in fMain.changes.Items)
-                                streamW.WriteLine("\t\t\t\"" + line.ToString().Replace("\"", "\\\"") + "\"" + (line.Equals(fMain.changes.Items[fMain.changes.Items.Count - 1].ToString()) ? "" : ","));
-                            streamW.WriteLine("\t\t],\r\n");
+                                streamW.WriteLine("\t\"Body\" : {");
+                                // New features
+                                streamW.WriteLine("\t\t\"New features\" : [");
+                                foreach (var line in fMain.newFeatures.Items)
+                                    streamW.WriteLine("\t\t\t\"" + line.ToString().Replace("\"", "\\\"") + "\"" + (line.Equals(fMain.newFeatures.Items[fMain.newFeatures.Items.Count - 1].ToString()) ? "" : ","));
+                                streamW.WriteLine("\t\t],\r\n");
 
-                            // Fixes
-                            streamW.WriteLine("\t\t\"Fixes\" : [");
-                            foreach (var line in fMain.fixes.Items)
-                                streamW.WriteLine("\t\t\t\"" + line.ToString().Replace("\"", "\\\"") + "\"" + (line.Equals(fMain.fixes.Items[fMain.fixes.Items.Count - 1].ToString()) ? "" : ","));
-                            streamW.WriteLine("\t\t]");
-                            streamW.WriteLine("\t},\r\n");
+                                // Changes
+                                streamW.WriteLine("\t\t\"Changes\" : [");
+                                foreach (var line in fMain.changes.Items)
+                                    streamW.WriteLine("\t\t\t\"" + line.ToString().Replace("\"", "\\\"") + "\"" + (line.Equals(fMain.changes.Items[fMain.changes.Items.Count - 1].ToString()) ? "" : ","));
+                                streamW.WriteLine("\t\t],\r\n");
 
-                            streamW.WriteLine("\t\"Footer\" : {");
-                            streamW.WriteLine("\t\t\"Export date\" : \"" + DateTime.Now + "\"");
-                            fMain.UpdateStatusStrip("Change-log was successfully exported in plain text");
-                            streamW.WriteLine("\t}");
-                            streamW.WriteLine("}");
+                                // Fixes
+                                streamW.WriteLine("\t\t\"Fixes\" : [");
+                                foreach (var line in fMain.fixes.Items)
+                                    streamW.WriteLine("\t\t\t\"" + line.ToString().Replace("\"", "\\\"") + "\"" + (line.Equals(fMain.fixes.Items[fMain.fixes.Items.Count - 1].ToString()) ? "" : ","));
+                                streamW.WriteLine("\t\t]");
+                                streamW.WriteLine("\t},\r\n");
 
-                            fMain.UpdateStatusStrip("Change-log was successfully exported in JSON format");
+                                streamW.WriteLine("\t\"Footer\" : {");
+                                streamW.WriteLine("\t\t\"Export date\" : \"" + DateTime.Now + "\"");
+                                fMain.UpdateStatusStrip("Change-log was successfully exported in plain text");
+                                streamW.WriteLine("\t}");
+                                streamW.WriteLine("}");
+
+                                fMain.UpdateStatusStrip("Change-log was successfully exported in JSON format");
+                            }
+
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+
+                            finally
+                            {
+                                streamW.Close();
+                            }
                         }
 
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-
-                        finally
-                        {
-                            streamW.Close();
-                        }
+                        break;
                     }
-
-                    break;
-                }
 
                 case SaveType.XML:
-                {
-                    SaveFileDialog saveF = new SaveFileDialog() { Title = "Change-log export in XML format", Filter = "Change-log Files (*.xml)|*.xml", FileName = fMain.changelogTitle.Text + " - " + fMain.changelogVersion.Text };
-                    if (saveF.ShowDialog() == DialogResult.OK)
                     {
-                        try
+                        SaveFileDialog saveF = new SaveFileDialog() { Title = "Change-log export in XML format", Filter = "Change-log Files (*.xml)|*.xml", FileName = fMain.changelogTitle.Text.Trim() + " - " + fMain.changelogVersion.Text.Substring(8).Trim() };
+                        if (saveF.ShowDialog() == DialogResult.OK)
                         {
-                            XmlDocument doc = new XmlDocument();
-                            XmlNode dec = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
-                            doc.AppendChild(dec);
-
-                            XmlNode root = doc.CreateElement("changelog");
-                            doc.AppendChild(root);
-                            XmlAttribute attr = doc.CreateAttribute("version");
-                            attr.Value = fMain.changelogVersion.Text.Trim();
-                            root.Attributes.Append(attr);
-
-                            XmlNode head = doc.CreateElement("head");
-                            root.AppendChild(head);
-                            XmlNode titleNode = doc.CreateElement("title");
-                            head.AppendChild(titleNode);
-                            titleNode.AppendChild(doc.CreateTextNode(fMain.changelogTitle.Text.Trim()));
-
-                            XmlNode body = doc.CreateElement("body");
-                            root.AppendChild(body);
-
-                            XmlNode newFNode = doc.CreateElement("new_features");
-                            body.AppendChild(newFNode);
-                            foreach(var line in fMain.newFeatures.Items)
+                            try
                             {
-                                XmlNode newFeatureNode = doc.CreateElement("feature");
-                                newFNode.AppendChild(newFeatureNode);
-                                newFeatureNode.AppendChild(doc.CreateTextNode(line.ToString()));
+                                XmlDocument doc = new XmlDocument();
+                                XmlNode dec = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
+                                doc.AppendChild(dec);
+
+                                XmlNode root = doc.CreateElement("changelog");
+                                doc.AppendChild(root);
+                                XmlAttribute attr = doc.CreateAttribute("version");
+                                attr.Value = fMain.changelogVersion.Text.Trim();
+                                root.Attributes.Append(attr);
+
+                                XmlNode head = doc.CreateElement("head");
+                                root.AppendChild(head);
+                                XmlNode titleNode = doc.CreateElement("title");
+                                head.AppendChild(titleNode);
+                                titleNode.AppendChild(doc.CreateTextNode(fMain.changelogTitle.Text.Trim()));
+
+                                XmlNode body = doc.CreateElement("body");
+                                root.AppendChild(body);
+
+                                XmlNode newFNode = doc.CreateElement("new_features");
+                                body.AppendChild(newFNode);
+                                foreach (var line in fMain.newFeatures.Items)
+                                {
+                                    XmlNode newFeatureNode = doc.CreateElement("feature");
+                                    newFNode.AppendChild(newFeatureNode);
+                                    newFeatureNode.AppendChild(doc.CreateTextNode(line.ToString()));
+                                }
+
+                                XmlNode changesNodes = doc.CreateElement("changes");
+                                body.AppendChild(changesNodes);
+                                foreach (var line in fMain.changes.Items)
+                                {
+                                    XmlNode changeNode = doc.CreateElement("change");
+                                    changesNodes.AppendChild(changeNode);
+                                    changeNode.AppendChild(doc.CreateTextNode(line.ToString()));
+                                }
+
+                                XmlNode fixesNode = doc.CreateElement("fixes");
+                                body.AppendChild(fixesNode);
+                                foreach (var line in fMain.fixes.Items)
+                                {
+                                    XmlNode fixNode = doc.CreateElement("fix");
+                                    fixesNode.AppendChild(fixNode);
+                                    fixNode.AppendChild(doc.CreateTextNode(line.ToString()));
+                                }
+
+                                XmlNode footer = doc.CreateElement("footer");
+                                root.AppendChild(footer);
+                                XmlNode dateNode = doc.CreateElement("export_date");
+                                footer.AppendChild(dateNode);
+                                dateNode.AppendChild(doc.CreateTextNode(DateTime.Now.ToString()));
+
+                                doc.Save(saveF.FileName);
+                                fMain.UpdateStatusStrip("Change-log was successfully exported in XML format");
                             }
 
-                            XmlNode changesNodes = doc.CreateElement("changes");
-                            body.AppendChild(changesNodes);
-                            foreach (var line in fMain.changes.Items)
+                            catch (Exception ex)
                             {
-                                XmlNode changeNode = doc.CreateElement("change");
-                                changesNodes.AppendChild(changeNode);
-                                changeNode.AppendChild(doc.CreateTextNode(line.ToString()));
+                                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
-
-                            XmlNode fixesNode = doc.CreateElement("fixes");
-                            body.AppendChild(fixesNode);
-                            foreach (var line in fMain.fixes.Items)
-                            {
-                                XmlNode fixNode = doc.CreateElement("fix");
-                                fixesNode.AppendChild(fixNode);
-                                fixNode.AppendChild(doc.CreateTextNode(line.ToString()));
-                            }
-
-                            XmlNode footer = doc.CreateElement("footer");
-                            root.AppendChild(footer);
-                            XmlNode dateNode = doc.CreateElement("export_date");
-                            footer.AppendChild(dateNode);
-                            dateNode.AppendChild(doc.CreateTextNode(DateTime.Now.ToString()));
-
-                            doc.Save(saveF.FileName);
-                            fMain.UpdateStatusStrip("Change-log was successfully exported in XML format");
                         }
 
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        break;
                     }
 
-                    break;
-                }
-
                 case SaveType.YMAL:
+                    {
+                        SaveFileDialog saveF = new SaveFileDialog() { Title = "Change-log export in YAML format", Filter = "Change-log Files (*.yaml)|*.yaml", FileName = fMain.changelogTitle.Text.Trim() + " - " + fMain.changelogVersion.Text.Substring(8).Trim() };
+                        if (saveF.ShowDialog() == DialogResult.OK)
+                        {
+                            StreamWriter streamW = new StreamWriter(saveF.FileName);
+
+                            try
+                            {
+                                streamW.WriteLine("---");
+                                streamW.WriteLine("Head:");
+                                streamW.WriteLine("  Title: " + fMain.changelogTitle.Text.Trim());
+                                streamW.WriteLine("  Version: " + fMain.changelogVersion.Text.Trim());
+
+                                streamW.WriteLine("\r\nBody:");
+                                streamW.WriteLine("  New features:");
+                                foreach (var line in fMain.newFeatures.Items)
+                                    streamW.WriteLine($"    - {line.ToString()}");
+
+                                streamW.WriteLine("\r\n  Changes:");
+                                foreach (var line in fMain.changes.Items)
+                                    streamW.WriteLine($"    - {line.ToString()}");
+
+                                streamW.WriteLine("\r\n  Fixes:");
+                                foreach (var line in fMain.fixes.Items)
+                                    streamW.WriteLine($"    - {line.ToString()}");
+
+                                streamW.WriteLine("\r\nFooter:");
+                                streamW.WriteLine("  Export date: " + DateTime.Now);
+                                streamW.WriteLine("...");
+
+                                fMain.UpdateStatusStrip("Change-log was successfully exported in YAML format");
+                            }
+
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+
+                            finally
+                            {
+                                streamW.Close();
+                            }
+                        }
+
+                        break;
+                    }
+
+                case SaveType.SQL:
                 {
-                    SaveFileDialog saveF = new SaveFileDialog() { Title = "Change-log export in YAML format", Filter = "Change-log Files (*.yaml)|*.yaml", FileName = fMain.changelogTitle.Text + " - " + fMain.changelogVersion.Text };
+                    SaveFileDialog saveF = new SaveFileDialog() { Title = "Change-log export as SQL queries", Filter = "Change-log Files (*.sql)|*.sql", FileName = fMain.changelogTitle.Text.Trim() + " - " + fMain.changelogVersion.Text.Substring(8).Trim() };
                     if (saveF.ShowDialog() == DialogResult.OK)
                     {
                         StreamWriter streamW = new StreamWriter(saveF.FileName);
 
                         try
                         {
-                            streamW.WriteLine("---");
-                            streamW.WriteLine("Head:");
-                            streamW.WriteLine("  Title: " + fMain.changelogTitle.Text.Trim());
-                            streamW.WriteLine("  Version: " + fMain.changelogVersion.Text.Trim());
+                            string dbms = (from rb in fSQLExport.dbsystem.Controls.OfType<RadioButton>() where rb.Checked == true select rb.Text).SingleOrDefault();
+                            string auto_increment = string.Empty;
 
-                            streamW.WriteLine("\r\nBody:");
-                            streamW.WriteLine("  New features:");
+                            switch(dbms)
+                            {
+                                case "MySQL": auto_increment = "AUTO_INCREMENT"; break;
+                                case "SQLite": auto_increment = "AUTOINCREMENT"; break;
+                                case "SQL Server": auto_increment = "IDENTITY"; break;
+                            }
+
+                            // Database creation
+                            streamW.WriteLine($"/*\r\n\t\t{fMain.changelogTitle.Text.Trim()} - {fMain.changelogVersion.Text.Trim()}\r\n*/");
+                            streamW.WriteLine($"CREATE DATABASE {fSQLExport.database_name.Text.Trim()};");
+                            streamW.WriteLine($"USE {fSQLExport.database_name.Text.Trim()};\r\n");
+
+                            // Tables creation
+                            streamW.WriteLine("-- Tables");
+                            streamW.WriteLine($"CREATE TABLE {fSQLExport.changelog_info_table.Text.Trim()}(");
+                            streamW.WriteLine($"\tid INT {auto_increment},");
+                            streamW.WriteLine("\tname VARCHAR(30),");
+                            streamW.WriteLine("\tversion VARCHAR(10) UNIQUE,");
+                            streamW.WriteLine("\texport_date DATETIME,\r\n");
+                            streamW.WriteLine("\tCONSTRAINT pk_clid PRIMARY KEY(id)");
+                            streamW.WriteLine(");\r\n");
+
+                            streamW.WriteLine($"CREATE TABLE {fSQLExport.new_features_table.Text.Trim()}(");
+                            streamW.WriteLine($"\tid INT {auto_increment},");
+                            streamW.WriteLine("\tversion VARCHAR(10),");
+                            streamW.WriteLine("\tcontent TEXT,\r\n");
+                            streamW.WriteLine("\tCONSTRAINT pk_nfid PRIMARY KEY(id),");
+                            streamW.WriteLine($"\tCONSTRAINT fk_cnid FOREIGN KEY(version) REFERENCES {fSQLExport.changelog_info_table.Text.Trim()}(version)");
+                            streamW.WriteLine(");\r\n");
+
+                            streamW.WriteLine($"CREATE TABLE {fSQLExport.changes_table.Text.Trim()}(");
+                            streamW.WriteLine($"\tid INT {auto_increment},");
+                            streamW.WriteLine("\tversion VARCHAR(10),");
+                            streamW.WriteLine("\tcontent TEXT,\r\n");
+                            streamW.WriteLine("\tCONSTRAINT pk_cid PRIMARY KEY(id),");
+                            streamW.WriteLine($"\tCONSTRAINT fk_ccid FOREIGN KEY(version) REFERENCES {fSQLExport.changelog_info_table.Text.Trim()}(version)");
+                            streamW.WriteLine(");\r\n");
+
+                            streamW.WriteLine($"CREATE TABLE {fSQLExport.fixes_table.Text.Trim()}(");
+                            streamW.WriteLine($"\tid INT {auto_increment},");
+                            streamW.WriteLine("\tversion VARCHAR(10),");
+                            streamW.WriteLine("\tcontent TEXT,\r\n");
+                            streamW.WriteLine("\tCONSTRAINT pk_fid PRIMARY KEY(id),");
+                            streamW.WriteLine($"\tCONSTRAINT fk_cfid FOREIGN KEY(version) REFERENCES {fSQLExport.changelog_info_table.Text.Trim()}(version)");
+                            streamW.WriteLine(");\r\n");
+
+                            // Queries
+                            streamW.WriteLine("-- Queries");
+                            streamW.WriteLine($"INSERT INTO {fSQLExport.changelog_info_table.Text.Trim()}(name, version, export_date) VALUES('{fMain.changelogTitle.Text.Trim()}', '{fMain.changelogVersion.Text.Substring(8).Trim()}', '{DateTime.Now}');\r\n");
+
+                            streamW.WriteLine($"INSERT INTO {fSQLExport.new_features_table.Text.Trim()}(version, content) VALUES");
                             foreach (var line in fMain.newFeatures.Items)
-                                streamW.WriteLine($"    - {line.ToString()}");
+                                streamW.WriteLine($"('{fMain.changelogVersion.Text.Substring(8).Trim()}', '{line.ToString()}')" + (line.ToString() == fMain.newFeatures.Items[fMain.newFeatures.Items.Count - 1].ToString() ? ";\r\n" : ","));
 
-                            streamW.WriteLine("\r\n  Changes:");
+                            streamW.WriteLine($"INSERT INTO {fSQLExport.changes_table.Text.Trim()}(version, content) VALUES");
                             foreach (var line in fMain.changes.Items)
-                                streamW.WriteLine($"    - {line.ToString()}");
+                                streamW.WriteLine($"('{fMain.changelogVersion.Text.Substring(8).Trim()}', '{line.ToString()}')" + (line.ToString() == fMain.changes.Items[fMain.changes.Items.Count - 1].ToString() ? ";\r\n" : ","));
 
-                            streamW.WriteLine("\r\n  Fixes:");
+                            streamW.WriteLine($"INSERT INTO {fSQLExport.fixes_table.Text.Trim()}(version, content) VALUES");
                             foreach (var line in fMain.fixes.Items)
-                                streamW.WriteLine($"    - {line.ToString()}");
+                                streamW.WriteLine($"('{fMain.changelogVersion.Text.Substring(8).Trim()}', '{line.ToString()}')" + (line.ToString() == fMain.fixes.Items[fMain.fixes.Items.Count - 1].ToString() ? ";\r\n" : ","));
 
-                            streamW.WriteLine("\r\nFooter:");
-                            streamW.WriteLine("  Export date: " + DateTime.Now);
-                            streamW.WriteLine("...");
-
-                            fMain.UpdateStatusStrip("Change-log was successfully exported in YAML format");
+                            fMain.UpdateStatusStrip("Change-log was successfully exported as SQL queries");
                         }
 
                         catch (Exception ex)

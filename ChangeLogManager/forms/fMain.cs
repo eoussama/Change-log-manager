@@ -70,7 +70,7 @@ namespace ChangeLogManager
                 try
                 {
                     streamW.WriteLine("[Title: " + fMain.changelogTitle.Text.Trim() + "]");
-                    streamW.WriteLine("[Version: " + fMain.changelogVersion.Text.Trim() + "]");
+                    streamW.WriteLine("[Version: " + fMain.changelogVersion.Text.Substring(8).Trim() + "]");
 
                     // New features
                     foreach (var line in fMain.newFeatures.Items)
@@ -112,11 +112,15 @@ namespace ChangeLogManager
 
 
         // MenuStrip - About ---------------------------------------------------------
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void semanticVersioningToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This application is mainly focused on creating and managing change-logs,\nIt might not look that professional, but it's still better than having a bunch of files here and there.\n\nCreated on 1/1/2018 - 4:30 PM by Eoussama", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("This is not a new or revolutionary idea. In fact, you probably do something close to this already. The problem is that “close” isn’t good enough. Without compliance to some sort of formal specification, version numbers are essentially useless for dependency management. By giving a name and clear definition to the above ideas, it becomes easy to communicate your intentions to the users of your software. Once these intentions are clear, flexible (but not too flexible) dependency specifications can finally be made.\n\nFor more information, read this article: www.semver.org", "About Semantic Versioning", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        private void creditsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show($"This application is mainly focused on creating and managing change-logs,\nIt might not look that professional, but it's still better than having a bunch of files here and there.\n\nCreated on 1/1/2018 - 4:30 PM by {Config.author}", $"About - {Config.name} v{Config.version}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
 
         // MenuStrip - Export --------------------------------------------------------
         private void textFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -158,6 +162,12 @@ namespace ChangeLogManager
         private void yAMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
             cLog.ExportLog(SaveType.YMAL);
+        }
+
+        private void sQLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fSQLExport form = new fSQLExport();
+            form.ShowDialog();
         }
 
 
@@ -409,7 +419,7 @@ namespace ChangeLogManager
         public static void UpdateStatusStrip(string text)
         {
             StatusStrip.Items.Clear();
-            StatusStrip.Items.Add("Change-log Manager - Version 0.4     |     \t " + text);
+            StatusStrip.Items.Add($"{Config.name} - Version {Config.version}     |     \t " + text);
         }
     }
 }

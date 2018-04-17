@@ -9,6 +9,8 @@ namespace ChangeLogManager.forms
         public fVersionEdit()
         {
             InitializeComponent();
+
+            tbEdit.Text = fMain.changelogVersion.Text.Substring(8).Trim();
         }
 
 

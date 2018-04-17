@@ -58,7 +58,13 @@
             this.markdownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hTMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pawnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.yAMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sQLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.semanticVersioningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTipAdd = new System.Windows.Forms.ToolTip(this.components);
             this.pbAddFixes = new System.Windows.Forms.PictureBox();
             this.pbAddChanges = new System.Windows.Forms.PictureBox();
@@ -83,9 +89,6 @@
             this.pbFixDown = new System.Windows.Forms.PictureBox();
             this.pbNewDown = new System.Windows.Forms.PictureBox();
             this.pbChangeDown = new System.Windows.Forms.PictureBox();
-            this.jSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.xMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.yAMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pTitle.SuspendLayout();
             this.msMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbAddFixes)).BeginInit();
@@ -132,7 +135,7 @@
             this.lVersion.Name = "lVersion";
             this.lVersion.Size = new System.Drawing.Size(700, 21);
             this.lVersion.TabIndex = 2;
-            this.lVersion.Text = "Version N/A";
+            this.lVersion.Text = "N/A";
             this.lVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pTitle
@@ -356,7 +359,8 @@
             this.pawnToolStripMenuItem,
             this.jSONToolStripMenuItem,
             this.xMLToolStripMenuItem,
-            this.yAMLToolStripMenuItem});
+            this.yAMLToolStripMenuItem,
+            this.sQLToolStripMenuItem});
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
             this.exportToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.exportToolStripMenuItem.Text = "Export";
@@ -364,44 +368,88 @@
             // textFileToolStripMenuItem
             // 
             this.textFileToolStripMenuItem.Name = "textFileToolStripMenuItem";
-            this.textFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.textFileToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.textFileToolStripMenuItem.Text = "Text file";
             this.textFileToolStripMenuItem.Click += new System.EventHandler(this.textFileToolStripMenuItem_Click);
             // 
             // bBCodeToolStripMenuItem
             // 
             this.bBCodeToolStripMenuItem.Name = "bBCodeToolStripMenuItem";
-            this.bBCodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bBCodeToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.bBCodeToolStripMenuItem.Text = "BB Code";
             this.bBCodeToolStripMenuItem.Click += new System.EventHandler(this.bBCodeToolStripMenuItem_Click);
             // 
             // markdownToolStripMenuItem
             // 
             this.markdownToolStripMenuItem.Name = "markdownToolStripMenuItem";
-            this.markdownToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.markdownToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.markdownToolStripMenuItem.Text = "Markdown";
             this.markdownToolStripMenuItem.Click += new System.EventHandler(this.markdownToolStripMenuItem_Click);
             // 
             // hTMLToolStripMenuItem
             // 
             this.hTMLToolStripMenuItem.Name = "hTMLToolStripMenuItem";
-            this.hTMLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hTMLToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.hTMLToolStripMenuItem.Text = "HTML";
             this.hTMLToolStripMenuItem.Click += new System.EventHandler(this.hTMLToolStripMenuItem_Click);
             // 
             // pawnToolStripMenuItem
             // 
             this.pawnToolStripMenuItem.Name = "pawnToolStripMenuItem";
-            this.pawnToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pawnToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.pawnToolStripMenuItem.Text = "Pawn";
             this.pawnToolStripMenuItem.Click += new System.EventHandler(this.pawnToolStripMenuItem_Click);
             // 
+            // jSONToolStripMenuItem
+            // 
+            this.jSONToolStripMenuItem.Name = "jSONToolStripMenuItem";
+            this.jSONToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.jSONToolStripMenuItem.Text = "JSON";
+            this.jSONToolStripMenuItem.Click += new System.EventHandler(this.jSONToolStripMenuItem_Click);
+            // 
+            // xMLToolStripMenuItem
+            // 
+            this.xMLToolStripMenuItem.Name = "xMLToolStripMenuItem";
+            this.xMLToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.xMLToolStripMenuItem.Text = "XML";
+            this.xMLToolStripMenuItem.Click += new System.EventHandler(this.xMLToolStripMenuItem_Click);
+            // 
+            // yAMLToolStripMenuItem
+            // 
+            this.yAMLToolStripMenuItem.Name = "yAMLToolStripMenuItem";
+            this.yAMLToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.yAMLToolStripMenuItem.Text = "YAML";
+            this.yAMLToolStripMenuItem.Click += new System.EventHandler(this.yAMLToolStripMenuItem_Click);
+            // 
+            // sQLToolStripMenuItem
+            // 
+            this.sQLToolStripMenuItem.Name = "sQLToolStripMenuItem";
+            this.sQLToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.sQLToolStripMenuItem.Text = "SQL";
+            this.sQLToolStripMenuItem.Click += new System.EventHandler(this.sQLToolStripMenuItem_Click);
+            // 
             // aboutToolStripMenuItem
             // 
+            this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.semanticVersioningToolStripMenuItem,
+            this.creditsToolStripMenuItem});
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // semanticVersioningToolStripMenuItem
+            // 
+            this.semanticVersioningToolStripMenuItem.Name = "semanticVersioningToolStripMenuItem";
+            this.semanticVersioningToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.semanticVersioningToolStripMenuItem.Text = "Semantic Versioning";
+            this.semanticVersioningToolStripMenuItem.Click += new System.EventHandler(this.semanticVersioningToolStripMenuItem_Click);
+            // 
+            // creditsToolStripMenuItem
+            // 
+            this.creditsToolStripMenuItem.Name = "creditsToolStripMenuItem";
+            this.creditsToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.creditsToolStripMenuItem.Text = "Credits";
+            this.creditsToolStripMenuItem.Click += new System.EventHandler(this.creditsToolStripMenuItem_Click);
             // 
             // toolTipAdd
             // 
@@ -706,27 +754,6 @@
             this.pbChangeDown.Visible = false;
             this.pbChangeDown.Click += new System.EventHandler(this.pbChangeDown_Click);
             // 
-            // jSONToolStripMenuItem
-            // 
-            this.jSONToolStripMenuItem.Name = "jSONToolStripMenuItem";
-            this.jSONToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.jSONToolStripMenuItem.Text = "JSON";
-            this.jSONToolStripMenuItem.Click += new System.EventHandler(this.jSONToolStripMenuItem_Click);
-            // 
-            // xMLToolStripMenuItem
-            // 
-            this.xMLToolStripMenuItem.Name = "xMLToolStripMenuItem";
-            this.xMLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.xMLToolStripMenuItem.Text = "XML";
-            this.xMLToolStripMenuItem.Click += new System.EventHandler(this.xMLToolStripMenuItem_Click);
-            // 
-            // yAMLToolStripMenuItem
-            // 
-            this.yAMLToolStripMenuItem.Name = "yAMLToolStripMenuItem";
-            this.yAMLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.yAMLToolStripMenuItem.Text = "YAML";
-            this.yAMLToolStripMenuItem.Click += new System.EventHandler(this.yAMLToolStripMenuItem_Click);
-            // 
             // fMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -851,6 +878,9 @@
         private System.Windows.Forms.ToolStripMenuItem jSONToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem xMLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem yAMLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sQLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem semanticVersioningToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem creditsToolStripMenuItem;
     }
 }
 

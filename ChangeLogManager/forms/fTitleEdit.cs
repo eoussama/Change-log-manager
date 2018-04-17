@@ -9,6 +9,8 @@ namespace ChangeLogManager.forms
         public fTitleEdit()
         {
             InitializeComponent();
+
+            tbEdit.Text = fMain.changelogTitle.Text.Trim();
         }
 
 
@@ -27,9 +29,21 @@ namespace ChangeLogManager.forms
         // Button -----------------------------------------------------------------------
         private void bEdit_Click(object sender, EventArgs e)
         {
-            fMain.changelogTitle.Text = tbEdit.Text.Trim();
-            fMain.UpdateStatusStrip("The change-log's title was successfully edited");
-            this.Close();
+            try
+            {
+                if (tbEdit.Text.Length > 30) throw new Exception("The change-log's title has to be shorter than 30 characters.");
+
+                fMain.changelogTitle.Text = tbEdit.Text.Trim();
+                fMain.UpdateStatusStrip("The change-log's title was successfully edited");
+                this.Close();
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            
         }
     }
 }
