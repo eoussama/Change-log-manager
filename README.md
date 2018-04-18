@@ -17,4 +17,4 @@ The application is still far from perfect, or maybe not?! both in design and fun
 
 ## Semantic Versioning
 > This is not a new or revolutionary idea. In fact, you probably do something close to this already. The problem is that “close” isn’t good enough. Without compliance to some sort of formal specification, version numbers are essentially useless for dependency management. By giving a name and clear definition to the above ideas, it becomes easy to communicate your intentions to the users of your software. Once these intentions are clear, flexible (but not too flexible) dependency specifications can finally be made.
-- Read more on **Semantic Versioning** [here](http:\\semver.org)
+- Read more on **Semantic Versioning** [here](http://semver.org)
