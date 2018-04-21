@@ -95,7 +95,7 @@
             this.lClose.BackColor = System.Drawing.Color.Transparent;
             this.lClose.Dock = System.Windows.Forms.DockStyle.Right;
             this.lClose.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lClose.ForeColor = System.Drawing.Color.White;
+            this.lClose.ForeColor = System.Drawing.SystemColors.ScrollBar;
             this.lClose.Location = new System.Drawing.Point(150, 0);
             this.lClose.Name = "lClose";
             this.lClose.Size = new System.Drawing.Size(16, 16);

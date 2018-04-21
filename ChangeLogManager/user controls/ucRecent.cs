@@ -42,25 +42,29 @@ namespace ChangeLogManager
         private void lClose_MouseEnter(object sender, EventArgs e)
         {
             this.lClose.ForeColor = Color.DimGray;
+            this.BackColor = Color.Silver;
         }
 
         private void lClose_MouseLeave(object sender, EventArgs e)
         {
-            this.lClose.ForeColor = Color.White;
+            this.lClose.ForeColor = Color.Gainsboro;
         }
 
         private void lClose_Click(object sender, EventArgs e)
         {
-            cLog.RemoveLogFromRecent(this.path);
+            if(this.lClose.ForeColor != SystemColors.ScrollBar)
+                cLog.RemoveLogFromRecent(this.path);
         }
 
         private void ucRecent_MouseEnter(object sender, EventArgs e)
         {
+            this.lClose.ForeColor = Color.Gainsboro;
             this.BackColor = Color.Silver;
         }
 
         private void ucRecent_MouseLeave(object sender, EventArgs e)
         {
+            this.lClose.ForeColor = SystemColors.ScrollBar;
             this.BackColor = SystemColors.ScrollBar;
         }
     }
