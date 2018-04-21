@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using System.Drawing;
 using System.Text.RegularExpressions;
 using ChangeLogManager.forms;
 using System.Linq;
@@ -668,6 +669,7 @@ namespace ChangeLogManager.classes
                 int recentCount = fWelcome.menu.Controls.OfType<ucRecent>().Count();
 
                 fWelcome.fCount.Text = $"You have {recentCount.ToString()} recent file" + (recentCount == 1 ? "" : "s");
+                fWelcome.menu.VerticalScroll.Value = 0;
                 fWelcome.menu.Controls.OfType<ucRecent>().ToList().ForEach(recent => recent.Top = recent.Height * fWelcome.menu.Controls.IndexOf(recent));
             }
         }
@@ -690,6 +692,15 @@ namespace ChangeLogManager.classes
                 int recentCount = fWelcome.menu.Controls.OfType<ucRecent>().Count();
                 fWelcome.fCount.Text = $"You have {recentCount.ToString()} recent file" + (recentCount == 1 ? "" : "s");
             }
+        }
+
+        public static void SortRecents()
+        {
+            var ordered = fWelcome.menu.Controls.OfType<ucRecent>().OrderByDescending(recent => recent.lastEdited).ToArray();
+            fWelcome.menu.Controls.Clear();
+            fWelcome.menu.Controls.AddRange(ordered);
+            fWelcome.menu.VerticalScroll.Value = 0;
+            fWelcome.menu.Controls.OfType<ucRecent>().ToList().ForEach(recent => recent.Top = recent.Height * fWelcome.menu.Controls.IndexOf(recent));
         }
 
         public static string getLogTitle(string path)
@@ -724,7 +735,7 @@ namespace ChangeLogManager.classes
             return output;
         }
 
-        public static string getLogDate(string path)
+        public static DateTime getLogDate(string path)
         {
             string output = string.Empty, line = string.Empty;
             StreamReader streamR = new StreamReader(path);
@@ -737,7 +748,7 @@ namespace ChangeLogManager.classes
 
             streamR.Close();
 
-            return DateTime.Parse(output).ToShortDateString();
+            return DateTime.Parse(output);
         }
 
         public static void Flush()

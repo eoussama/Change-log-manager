@@ -9,6 +9,7 @@ namespace ChangeLogManager
     {
         public Label title, version, date;
         public string path;
+        public DateTime lastEdited;
 
         public ucRecent()
         {
@@ -48,6 +49,7 @@ namespace ChangeLogManager
         private void lClose_MouseLeave(object sender, EventArgs e)
         {
             this.lClose.ForeColor = Color.Gainsboro;
+            ucRecent_MouseLeave(sender, e);
         }
 
         private void lClose_Click(object sender, EventArgs e)

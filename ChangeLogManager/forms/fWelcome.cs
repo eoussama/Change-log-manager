@@ -49,7 +49,7 @@ namespace ChangeLogManager.forms
                             {
                                 recent.title.Text = cLog.getLogTitle(recent.path);
                                 recent.version.Text = "Version " + cLog.getLogVersion(recent.path);
-                                recent.date.Text = cLog.getLogDate(recent.path);
+                                recent.date.Text = (recent.lastEdited = cLog.getLogDate(recent.path)).ToShortDateString();
                                 pRecent.Controls.Add(recent);
                             }
                         }
@@ -65,6 +65,7 @@ namespace ChangeLogManager.forms
                 {
                     streamR.Close();
                     cLog.Flush();
+                    cLog.SortRecents();
                 }
             }
 
