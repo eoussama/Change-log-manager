@@ -32,6 +32,7 @@ namespace ChangeLogManager.forms
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fWelcome));
             this.pMenu = new System.Windows.Forms.Panel();
+            this.pRecent = new System.Windows.Forms.Panel();
             this.pRecentCount = new System.Windows.Forms.Panel();
             this.lRecentCount = new System.Windows.Forms.Label();
             this.bOpen = new System.Windows.Forms.Button();
@@ -48,8 +49,8 @@ namespace ChangeLogManager.forms
             // 
             // pMenu
             // 
-            this.pMenu.AutoScroll = true;
             this.pMenu.BackColor = System.Drawing.Color.Gainsboro;
+            this.pMenu.Controls.Add(this.pRecent);
             this.pMenu.Controls.Add(this.pRecentCount);
             this.pMenu.Controls.Add(this.bOpen);
             this.pMenu.Controls.Add(this.bNew);
@@ -58,6 +59,14 @@ namespace ChangeLogManager.forms
             this.pMenu.Name = "pMenu";
             this.pMenu.Size = new System.Drawing.Size(167, 424);
             this.pMenu.TabIndex = 0;
+            // 
+            // pRecent
+            // 
+            this.pRecent.AutoScroll = true;
+            this.pRecent.Location = new System.Drawing.Point(1, 152);
+            this.pRecent.Name = "pRecent";
+            this.pRecent.Size = new System.Drawing.Size(166, 271);
+            this.pRecent.TabIndex = 4;
             // 
             // pRecentCount
             // 
@@ -71,6 +80,7 @@ namespace ChangeLogManager.forms
             // lRecentCount
             // 
             this.lRecentCount.BackColor = System.Drawing.Color.DarkGray;
+            this.lRecentCount.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lRecentCount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lRecentCount.Font = new System.Drawing.Font("Bahnschrift SemiBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lRecentCount.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
@@ -80,6 +90,9 @@ namespace ChangeLogManager.forms
             this.lRecentCount.TabIndex = 0;
             this.lRecentCount.Text = "You have 0 recent files";
             this.lRecentCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lRecentCount.Click += new System.EventHandler(this.lRecentCount_Click);
+            this.lRecentCount.MouseEnter += new System.EventHandler(this.lRecentCount_MouseEnter);
+            this.lRecentCount.MouseLeave += new System.EventHandler(this.lRecentCount_MouseLeave);
             // 
             // bOpen
             // 
@@ -151,9 +164,9 @@ namespace ChangeLogManager.forms
             this.lVersion.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lVersion.Location = new System.Drawing.Point(6, 8);
             this.lVersion.Name = "lVersion";
-            this.lVersion.Size = new System.Drawing.Size(206, 16);
+            this.lVersion.Size = new System.Drawing.Size(211, 16);
             this.lVersion.TabIndex = 1;
-            this.lVersion.Text = Config.name + " - " + Config.version;
+            this.lVersion.Text = "Change-log Manager - 1.0.0";
             // 
             // rtbChangelog
             // 
@@ -180,7 +193,7 @@ namespace ChangeLogManager.forms
             this.MaximizeBox = false;
             this.Name = "fWelcome";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = Config.name;
+            this.Text = "Change-log Manager";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.fWelcome_FormClosed);
             this.pMenu.ResumeLayout(false);
             this.pRecentCount.ResumeLayout(false);
@@ -202,5 +215,6 @@ namespace ChangeLogManager.forms
         private System.Windows.Forms.Label lChangelog;
         private System.Windows.Forms.Panel pRecentCount;
         private System.Windows.Forms.Label lRecentCount;
+        private System.Windows.Forms.Panel pRecent;
     }
 }

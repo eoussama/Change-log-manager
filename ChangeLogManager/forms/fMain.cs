@@ -114,7 +114,8 @@ namespace ChangeLogManager
         // MenuStrip - About ---------------------------------------------------------
         private void semanticVersioningToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This is not a new or revolutionary idea. In fact, you probably do something close to this already. The problem is that “close” isn’t good enough. Without compliance to some sort of formal specification, version numbers are essentially useless for dependency management. By giving a name and clear definition to the above ideas, it becomes easy to communicate your intentions to the users of your software. Once these intentions are clear, flexible (but not too flexible) dependency specifications can finally be made.\n\nFor more information, read this article: www.semver.org", "About Semantic Versioning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (DialogResult.Yes == MessageBox.Show("This is not a new or revolutionary idea. In fact, you probably do something close to this already. The problem is that “close” isn’t good enough. Without compliance to some sort of formal specification, version numbers are essentially useless for dependency management. By giving a name and clear definition to the above ideas, it becomes easy to communicate your intentions to the users of your software. Once these intentions are clear, flexible (but not too flexible) dependency specifications can finally be made.\n\nFor more information, read the article at www.semver.org\nDo you want to browse to www.semver.org?", "About Semantic Versioning", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2))
+                System.Diagnostics.Process.Start("https://semver.org/");
         }
 
         private void creditsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -172,6 +173,13 @@ namespace ChangeLogManager
 
 
         // MenuStrip - Edit ----------------------------------------------------------
+        private void reloadFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cLog.ResetLog();
+            cLog.OpenLog(this, false, currentFile);
+            UpdateStatusStrip("Change-log successfully reloaded!");
+        }
+
         private void resetLogToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!cLog.IsLogEmpty())

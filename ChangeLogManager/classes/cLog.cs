@@ -640,6 +640,58 @@ namespace ChangeLogManager.classes
             }
         }
 
+        public static void RemoveLogFromRecent(string path)
+        {
+            try
+            {
+                File.Delete("config.cfg");
+
+                foreach (ucRecent recent in fWelcome.menu.Controls.OfType<ucRecent>())
+                {
+                    if (recent.path.Contains(path))
+                    {
+                        fWelcome.menu.Controls.Remove(recent);
+                        break;
+                    }
+                }
+
+                Flush();
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            finally
+            {
+                int recentCount = fWelcome.menu.Controls.OfType<ucRecent>().Count();
+
+                fWelcome.fCount.Text = $"You have {recentCount.ToString()} recent file" + (recentCount == 1 ? "" : "s");
+                fWelcome.menu.Controls.OfType<ucRecent>().ToList().ForEach(recent => recent.Top = recent.Height * fWelcome.menu.Controls.IndexOf(recent));
+            }
+        }
+
+        public static void ClearRecents()
+        {
+            try
+            {
+                fWelcome.menu.Controls.Clear();
+                Flush();
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            finally
+            {
+                int recentCount = fWelcome.menu.Controls.OfType<ucRecent>().Count();
+                fWelcome.fCount.Text = $"You have {recentCount.ToString()} recent file" + (recentCount == 1 ? "" : "s");
+            }
+        }
+
         public static string getLogTitle(string path)
         {
             string output = string.Empty, line = string.Empty;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -10,13 +11,14 @@ namespace ChangeLogManager.forms
     public partial class fWelcome : Form
     {
         public static Panel menu;
+        public static Label fCount;
 
         // Form --------------------------------------------------------------------------
         public fWelcome()
         {
             InitializeComponent();
-
-            menu = this.pMenu;
+            menu = this.pRecent;
+            fCount = this.lRecentCount;
 
             if (!File.Exists("config.cfg"))
             {
@@ -39,7 +41,7 @@ namespace ChangeLogManager.forms
                         if (Regex.IsMatch(line, @"^\[Recent: (.)*\]$"))
                         {
                             ucRecent recent = new ucRecent();
-                            recent.Top = (bNew.Height * 2) + pRecentCount.Size.Height + (recent.Height * pMenu.Controls.OfType<ucRecent>().Count());
+                            recent.Top = recent.Height * pRecent.Controls.OfType<ucRecent>().Count();
                             recent.Left = bNew.Left;
                             recent.path = line.Substring(9, line.Length - 10);
 
@@ -48,7 +50,7 @@ namespace ChangeLogManager.forms
                                 recent.title.Text = cLog.getLogTitle(recent.path);
                                 recent.version.Text = "Version " + cLog.getLogVersion(recent.path);
                                 recent.date.Text = cLog.getLogDate(recent.path);
-                                pMenu.Controls.Add(recent);
+                                pRecent.Controls.Add(recent);
                             }
                         }
                     }
@@ -66,7 +68,7 @@ namespace ChangeLogManager.forms
                 }
             }
 
-            int recentCount = pMenu.Controls.OfType<ucRecent>().Count();
+            int recentCount = pRecent.Controls.OfType<ucRecent>().Count();
             lRecentCount.Text = "You have " + recentCount + " recent file" + (recentCount == 1 ? "" : "s");
         }
 
@@ -75,6 +77,32 @@ namespace ChangeLogManager.forms
             Application.Exit();
         }
 
+
+        // Labels ------------------------------------------------------------------------
+        private void lRecentCount_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (pRecent.Controls.OfType<ucRecent>().Count() == 0) throw new Exception("The recent files section is already empty");
+                if (DialogResult.Yes == MessageBox.Show("Do you really want to clear the recent files section?", "Notice", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2))
+                    cLog.ClearRecents();
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Notice", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void lRecentCount_MouseEnter(object sender, EventArgs e)
+        {
+            lRecentCount.BackColor = Color.Silver;
+        }
+
+        private void lRecentCount_MouseLeave(object sender, EventArgs e)
+        {
+            lRecentCount.BackColor = Color.DarkGray;
+        }
 
         // Buttons -----------------------------------------------------------------------
         private void bNew_Click(object sender, EventArgs e)
@@ -88,6 +116,6 @@ namespace ChangeLogManager.forms
             OpenFileDialog openF = new OpenFileDialog() { Title = "Change-log open", Filter = "Change-log Files (*.log)|*.log" };
             if (openF.ShowDialog() == DialogResult.OK)
                 cLog.OpenLog(currentForm:this, path:openF.FileName);
-        }    
+        }
     }
 }

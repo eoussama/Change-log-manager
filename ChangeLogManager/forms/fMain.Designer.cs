@@ -43,14 +43,17 @@
             this.msMenu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.welcomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveUsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editChangelogTitleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editChangelogVersionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.resetLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,6 +92,7 @@
             this.pbFixDown = new System.Windows.Forms.PictureBox();
             this.pbNewDown = new System.Windows.Forms.PictureBox();
             this.pbChangeDown = new System.Windows.Forms.PictureBox();
+            this.reloadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pTitle.SuspendLayout();
             this.msMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbAddFixes)).BeginInit();
@@ -256,10 +260,12 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.welcomeToolStripMenuItem,
+            this.toolStripSeparator2,
             this.newToolStripMenuItem,
             this.openToolStripMenuItem,
             this.saveToolStripMenuItem,
             this.saveUsToolStripMenuItem,
+            this.toolStripSeparator1,
             this.quitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
@@ -272,6 +278,11 @@
             this.welcomeToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.welcomeToolStripMenuItem.Text = "Welcome";
             this.welcomeToolStripMenuItem.Click += new System.EventHandler(this.welcomeToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(180, 6);
             // 
             // newToolStripMenuItem
             // 
@@ -310,6 +321,11 @@
             this.saveUsToolStripMenuItem.Text = "Save as";
             this.saveUsToolStripMenuItem.Click += new System.EventHandler(this.saveUsToolStripMenuItem_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(180, 6);
+            // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
@@ -323,6 +339,8 @@
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editChangelogTitleToolStripMenuItem,
             this.editChangelogVersionToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.reloadFileToolStripMenuItem,
             this.resetLogToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
@@ -341,6 +359,11 @@
             this.editChangelogVersionToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.editChangelogVersionToolStripMenuItem.Text = "Edit changelog version";
             this.editChangelogVersionToolStripMenuItem.Click += new System.EventHandler(this.editChangelogVersionToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(190, 6);
             // 
             // resetLogToolStripMenuItem
             // 
@@ -754,6 +777,14 @@
             this.pbChangeDown.Visible = false;
             this.pbChangeDown.Click += new System.EventHandler(this.pbChangeDown_Click);
             // 
+            // reloadFileToolStripMenuItem
+            // 
+            this.reloadFileToolStripMenuItem.Name = "reloadFileToolStripMenuItem";
+            this.reloadFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            this.reloadFileToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.reloadFileToolStripMenuItem.Text = "Reload file";
+            this.reloadFileToolStripMenuItem.Click += new System.EventHandler(this.reloadFileToolStripMenuItem_Click);
+            // 
             // fMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -881,6 +912,10 @@
         private System.Windows.Forms.ToolStripMenuItem sQLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem semanticVersioningToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem creditsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem reloadFileToolStripMenuItem;
     }
 }
 
