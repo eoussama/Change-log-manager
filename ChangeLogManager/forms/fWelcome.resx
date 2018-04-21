@@ -118,7 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="rtbChangelog.Text" xml:space="preserve">
-    <value> 
+    <value> Version 1.0.0 4/21/2018
+* New features
+    -Added information for "Semantic Versioning" and an auto redirection
+      to the official website.
+    -New export option (SQL queries).
+    -New option added to reload the opened chang-log in order
+      to update it in case some external changes were made to
+      the changelog's file.
+    -Added a button to remove items from the recently
+      opened files section.
+    -Ability to clear all recent files by pressing the recent files count label.
+    -Recent files are now ordered by last edited date.
+    -Few internal changes and code refactorization.
+    -Autofill for changelog title/version edit.
+    -Change-log titles limited to 30 characters.
+    -Fixed a bug that causes repetitions to the word "Version”
+      all over the place.
+    -Fixed few path duplication bugs.
+
  Version 0.4 - 4/11/2018
     -Various keybord shortcuts added.
     -Return button form validation.
